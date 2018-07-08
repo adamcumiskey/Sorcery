@@ -1,0 +1,23 @@
+{
+  "name": "Sorcery",
+  "version": "0.4.0",
+  "summary": "A block configurable datasource for static table views",
+  "description": "A block configurable datasource for table views. Useful for creating menus and displaying staic data.",
+  "homepage": "https://github.com/adamcumiskey/Sorcery",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Adam Cumiskey": "adam.cumiskey@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/adamcumiskey/Sorcery.git",
+    "tag": "0.4.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "swift_version": "3.2",
+  "source_files": "Sorcery/Classes/**/*"
+}

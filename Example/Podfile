@@ -1,9 +1,9 @@
 use_frameworks!
 
-target 'BlockDataSource_Example' do
-  pod 'BlockDataSource', :path => '../'
+target 'Sorcery_Example' do
+  pod 'Sorcery', :path => '../'
 
-  target 'BlockDataSourceTests' do
+  target 'SorceryTests' do
     pod 'Quick'
     pod 'Nimble'
   end
