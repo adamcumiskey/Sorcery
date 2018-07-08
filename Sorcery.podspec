@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'Sorcery'
-  s.version          = '0.4.0'
-  s.summary          = 'A block configurable datasource for static table views'
+  s.version          = '0.5.0'
+  s.summary          = 'Conjure UITableViews and UICollectionViews out of thin air'
 
   s.description      = <<-DESC
-		A block configurable datasource for table views. Useful for creating menus and displaying staic data.
+    Sorcery is an embedded DSL for declaratively constructing UITableViews and UICollectionViews.
                        DESC
 
   s.homepage         = 'https://github.com/adamcumiskey/Sorcery'
