@@ -1,5 +1,0 @@
-use_frameworks!
-
-target 'Sorcery_Example' do
-  pod 'Sorcery', :path => '../'
-end

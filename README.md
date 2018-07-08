@@ -1,8 +1,8 @@
-# BlockDataSource
+# Sorcery
 
-[![Version](https://img.shields.io/cocoapods/v/BlockDataSource.svg?style=flat)](http://cocoapods.org/pods/BlockDataSource)
-[![License](https://img.shields.io/cocoapods/l/BlockDataSource.svg?style=flat)](http://cocoapods.org/pods/BlockDataSource)
-[![Platform](https://img.shields.io/cocoapods/p/BlockDataSource.svg?style=flat)](http://cocoapods.org/pods/BlockDataSource)
+[![Version](https://img.shields.io/cocoapods/v/Sorcery.svg?style=flat)](http://cocoapods.org/pods/Sorcery)
+[![License](https://img.shields.io/cocoapods/l/Sorcery.svg?style=flat)](http://cocoapods.org/pods/Sorcery)
+[![Platform](https://img.shields.io/cocoapods/p/Sorcery.svg?style=flat)](http://cocoapods.org/pods/Sorcery)
 
 Conjure tables and collections out of thin air
 
@@ -25,7 +25,7 @@ let vc = BlockTableViewController(
                     },
                     Item { (cell: SubtitleTableViewCell) in
                         cell.textLabel?.text = "Load any cell with ease"
-                        cell.detailTextLabel?.text = "BlockDataSource automatically registers and loads the correct cell by using the class specified in the configure block."
+                        cell.detailTextLabel?.text = "Sorcery automatically registers and loads the correct cell by using the class specified in the configure block."
                         cell.detailTextLabel?.numberOfLines = 0
                     }
                 ]
@@ -41,11 +41,11 @@ let vc = BlockTableViewController(
 
 ## Installation
 
-BlockDataSource is available through [CocoaPods](http://cocoapods.org). To install
+Sorcery is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "BlockDataSource"
+pod "Sorcery"
 ```
 
 ## Author
@@ -54,4 +54,4 @@ Adam Cumiskey, adam.cumiskey@gmail.com
 
 ## License
 
-BlockDataSource is available under the MIT license. See the LICENSE file for more info.
+Sorcery is available under the MIT license. See the LICENSE file for more info.
