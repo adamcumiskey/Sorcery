@@ -1,0 +1,27 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Tag a new version and push to cocoapods"
+  lane :release_version do
+    version = version_bump_podspec(bump_type: "patch")
+    git_commit(path: "./Sorcery.podspec", message: version)
+    add_git_tag(tag: version)
+    push_to_git_remote(tags: true)
+    pod_push
+  end
+end
