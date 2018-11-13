@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/adamcumiskey/Sorcery.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
-  s.swift_version = '3.2'
+  s.swift_version = '4.0'
 
   s.source_files = 'Sorcery/Classes/**/*'
 end
