@@ -93,6 +93,8 @@ open class DataSource: NSObject {
     }
 }
 
+// MARK: - Scroll
+
 /// Stores blocks that allow the user to configure the `UIScrollViewDelegate` methods
 public struct Scroll {
     public typealias WillEndDraggingBlock = ((_ scrollView: UIScrollView, _ velocity: CGPoint, _ targetContentOffset: UnsafeMutablePointer<CGPoint>) -> Void)
@@ -170,6 +172,9 @@ public class Reusable {
 public class Item: Reusable {
     public let onSelect: IndexPathBlock?
     public let onDelete: IndexPathBlock?
+    public let leadingActions: [SwipeAction]?
+    public let trailingActions: [SwipeAction]?
+    public let performsFirstActionWithFullSwipe: Bool
     public let reorderable: Bool
 
     /**
@@ -179,6 +184,9 @@ public class Item: Reusable {
      - configure: The configuration block.
      - onSelect: The closure to execute when the item is tapped
      - onDelete: The closure to execute when the item is deleted
+     - leadingActions: The swipe actions on the leading edge of the cell. (iOS 11.0+)
+     - trailingActions: The swipe actions on the trailing edge of the cell. (iOS 11.0+)
+     - performsFirstActionWithFullSwipe: Determines if the first action will be called when a full swipe gesture occurs on the cell.
      - reuseIdentifier: Custom reuseIdentifier to use for this Item
      - reorderable: Allows this cell to be reordered when editing when true
      */
@@ -186,11 +194,17 @@ public class Item: Reusable {
         configure: @escaping (View) -> Void,
         onSelect: IndexPathBlock? = nil,
         onDelete: IndexPathBlock? = nil,
+        leadingActions: [SwipeAction]? = nil,
+        trailingActions: [SwipeAction]? = nil,
+        performsFirstActionWithFullSwipe: Bool = true,
         reuseIdentifier: String? = nil,
         reorderable: Bool = false
     ) {
         self.onSelect = onSelect
         self.onDelete = onDelete
+        self.leadingActions = leadingActions
+        self.trailingActions = trailingActions
+        self.performsFirstActionWithFullSwipe = performsFirstActionWithFullSwipe
         self.reorderable = reorderable
         super.init(reuseIdentifier: reuseIdentifier, configure: configure)
     }
@@ -202,6 +216,52 @@ public class Item: Reusable {
         configure: @escaping (View) -> Void
     ) {
         self.init(configure: configure, reuseIdentifier: reuseIdentifier, reorderable: reorderable)
+    }
+}
+
+// MARK: - SwipeAction
+
+/// Represents a leading or trailing swipe action for a UITableViewCell.
+public class SwipeAction {
+    public enum Style {
+        case normal, destructive
+
+        @available(iOS 11.0, *)
+        func asUIContextualActionStyle() -> UIContextualAction.Style {
+            switch self {
+            case .normal: return .normal
+            case .destructive: return .destructive
+            }
+        }
+    }
+
+    public let title: String?
+    public let image: UIImage?
+    public let style: Style
+    public let backgroundColor: UIColor
+    let handler: () -> Void
+
+    public init(title: String? = nil,
+                image: UIImage? = nil,
+                style: Style = .normal,
+                backgroundColor: UIColor = .blue,
+                handler: @escaping () -> Void) {
+        self.title = title
+        self.image = image
+        self.style = style
+        self.backgroundColor = backgroundColor
+        self.handler = handler
+    }
+
+    @available(iOS 11.0, *)
+    func asContextualAction() -> UIContextualAction {
+        let action = UIContextualAction(style: style.asUIContextualActionStyle(), title: title) { [weak self] _, _, completionHandler in
+            self?.handler()
+            completionHandler(true)
+        }
+        action.image = image
+        action.backgroundColor = backgroundColor
+        return action
     }
 }
 
@@ -364,6 +424,22 @@ extension DataSource: UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         return self[proposedDestinationIndexPath].reorderable ? proposedDestinationIndexPath : sourceIndexPath
+    }
+
+    @available(iOS 11.0, *)
+    public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let actions = self[indexPath].leadingActions else { return nil }
+        let configuration = UISwipeActionsConfiguration(actions: actions.map { $0.asContextualAction() })
+        configuration.performsFirstActionWithFullSwipe = self[indexPath].performsFirstActionWithFullSwipe
+        return configuration
+    }
+
+    @available(iOS 11.0, *)
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let actions = self[indexPath].trailingActions else { return nil }
+        let configuration = UISwipeActionsConfiguration(actions: actions.map { $0.asContextualAction() })
+        configuration.performsFirstActionWithFullSwipe = self[indexPath].performsFirstActionWithFullSwipe
+        return configuration
     }
 }
 
