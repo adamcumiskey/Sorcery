@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Sorcery'
-  s.version          = '0.5.3'
+  s.version          = '0.5.4'
   s.summary          = 'Conjure UITableViews and UICollectionViews out of thin air'
 
   s.description      = <<-DESC
