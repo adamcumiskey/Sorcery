@@ -35,6 +35,16 @@ class EditingViewController: BlockTableViewController {
                             onDelete: { [unowned self] indexPath in
                                 self.items.remove(at: indexPath.row)
                             },
+                            trailingActions: [
+                                SwipeAction(
+                                    title: "Remove",
+                                    style: .destructive,
+                                    backgroundColor: .red,
+                                    handler: { [weak self] in
+                                        self?.items.remove(at: item)
+                                    }
+                                )
+                            ],
                             reorderable: true
                         )
                     }
