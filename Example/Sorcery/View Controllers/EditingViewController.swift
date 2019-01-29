@@ -40,8 +40,9 @@ class EditingViewController: BlockTableViewController {
                                     title: "Remove",
                                     style: .destructive,
                                     backgroundColor: .red,
-                                    handler: { [weak self] in
+                                    handler: { [weak self] completion in
                                         self?.items.remove(at: item)
+                                        completion(true)
                                     }
                                 )
                             ],

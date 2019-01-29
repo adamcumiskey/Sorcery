@@ -34,6 +34,8 @@ public typealias ConfigureBlock = (UIView) -> Void
 public typealias IndexPathBlock = (_ indexPath: IndexPath) -> Void
 /// Callback for when the DataSource wants to move an Item to a new position
 public typealias ReorderBlock = (_ sourceIndex: IndexPath, _ destinationIndex: IndexPath) -> Void
+/// Callback with a boolean parameter
+public typealias BoolBlock = (Bool) -> Void
 
 // MARK: - DataSource
 
@@ -239,13 +241,13 @@ public class SwipeAction {
     public let image: UIImage?
     public let style: Style
     public let backgroundColor: UIColor
-    let handler: () -> Void
+    let handler: (BoolBlock) -> Void
 
     public init(title: String? = nil,
                 image: UIImage? = nil,
                 style: Style = .normal,
                 backgroundColor: UIColor = .blue,
-                handler: @escaping () -> Void) {
+                handler: @escaping (BoolBlock) -> Void) {
         self.title = title
         self.image = image
         self.style = style
@@ -256,8 +258,9 @@ public class SwipeAction {
     @available(iOS 11.0, *)
     func asContextualAction() -> UIContextualAction {
         let action = UIContextualAction(style: style.asUIContextualActionStyle(), title: title) { [weak self] _, _, completionHandler in
-            self?.handler()
-            completionHandler(true)
+            self?.handler { actionComplete in
+                completionHandler(actionComplete)
+            }
         }
         action.image = image
         action.backgroundColor = backgroundColor
