@@ -1,7 +1,7 @@
 PODS:
   - Nimble (7.1.3)
   - Quick (1.3.0)
-  - Sorcery (0.5.0)
+  - Sorcery (0.6.0)
 
 DEPENDENCIES:
   - Nimble
@@ -20,8 +20,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Nimble: 2839b01d1b31f6a6a7777a221f0d91cf52e8e27b
   Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
-  Sorcery: bf11e100cd22ba162dfd82098a0541e2fc2e70df
+  Sorcery: 7695618548386d91aa88a69abc6e836765ba2475
 
 PODFILE CHECKSUM: bb0bbd84e6cda308b440165e88fd87a6b7f6aad1
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
