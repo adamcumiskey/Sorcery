@@ -560,7 +560,7 @@ extension DataSource: UIScrollViewDelegate {
 
 public extension UITableView {
     /// Register the reuse identifiers to the table view
-    public func registerReuseIdentifiers(forDataSource dataSource: DataSource) {
+    func registerReuseIdentifiers(forDataSource dataSource: DataSource) {
         for section in dataSource.sections {
             if let header = section.header {
                 register(sectionDecoration: header)

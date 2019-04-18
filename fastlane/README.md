@@ -15,10 +15,9 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-## iOS
-### ios release_version
+### release_version
 ```
-fastlane ios release_version
+fastlane release_version
 ```
 Tag a new version and push to cocoapods
 
