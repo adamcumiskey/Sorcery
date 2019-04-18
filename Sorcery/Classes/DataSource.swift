@@ -34,8 +34,8 @@ public typealias ConfigureBlock = (UIView) -> Void
 public typealias IndexPathBlock = (_ indexPath: IndexPath) -> Void
 /// Callback for when the DataSource wants to move an Item to a new position
 public typealias ReorderBlock = (_ sourceIndex: IndexPath, _ destinationIndex: IndexPath) -> Void
-/// Callback with a boolean parameter
-public typealias BoolBlock = (Bool) -> Void
+/// Callback with IndexPath and completion block parameters used for Swipe actions
+public typealias SwipeBlock = (_ indexPath: IndexPath, _ completion: (Bool) -> Void) -> Void
 
 // MARK: - DataSource
 
@@ -224,6 +224,8 @@ public class Item: Reusable {
 // MARK: - SwipeAction
 
 /// Represents a leading or trailing swipe action for a UITableViewCell.
+///
+/// When defining the `handler`, ensure to call the `completion` handler with the result of whether the action was performed.
 public class SwipeAction {
     public enum Style {
         case normal, destructive
@@ -241,13 +243,13 @@ public class SwipeAction {
     public let image: UIImage?
     public let style: Style
     public let backgroundColor: UIColor
-    let handler: (BoolBlock) -> Void
+    let handler: SwipeBlock
 
     public init(title: String? = nil,
                 image: UIImage? = nil,
                 style: Style = .normal,
                 backgroundColor: UIColor = .blue,
-                handler: @escaping (BoolBlock) -> Void) {
+                handler: @escaping SwipeBlock) {
         self.title = title
         self.image = image
         self.style = style
@@ -256,9 +258,9 @@ public class SwipeAction {
     }
 
     @available(iOS 11.0, *)
-    func asContextualAction() -> UIContextualAction {
+    func asContextualAction(for indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: style.asUIContextualActionStyle(), title: title) { [weak self] _, _, completionHandler in
-            self?.handler { actionComplete in
+            self?.handler(indexPath) { actionComplete in
                 completionHandler(actionComplete)
             }
         }
@@ -432,7 +434,7 @@ extension DataSource: UITableViewDelegate {
     @available(iOS 11.0, *)
     public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let actions = self[indexPath].leadingActions else { return nil }
-        let configuration = UISwipeActionsConfiguration(actions: actions.map { $0.asContextualAction() })
+        let configuration = UISwipeActionsConfiguration(actions: actions.map { $0.asContextualAction(for: indexPath) })
         configuration.performsFirstActionWithFullSwipe = self[indexPath].performsFirstActionWithFullSwipe
         return configuration
     }
@@ -440,7 +442,7 @@ extension DataSource: UITableViewDelegate {
     @available(iOS 11.0, *)
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let actions = self[indexPath].trailingActions else { return nil }
-        let configuration = UISwipeActionsConfiguration(actions: actions.map { $0.asContextualAction() })
+        let configuration = UISwipeActionsConfiguration(actions: actions.map { $0.asContextualAction(for: indexPath) })
         configuration.performsFirstActionWithFullSwipe = self[indexPath].performsFirstActionWithFullSwipe
         return configuration
     }
@@ -612,7 +614,7 @@ public extension UITableView {
 
 public extension UICollectionView {
     /// Register reuse identifiers to the collection view
-    public func registerReuseIdentifiers(forDataSource dataSource: DataSource) {
+    func registerReuseIdentifiers(forDataSource dataSource: DataSource) {
         for section in dataSource.sections {
             if let header = section.header {
                 register(sectionDecoration: header, kind: UICollectionElementKindSectionHeader)
