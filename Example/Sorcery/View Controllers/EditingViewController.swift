@@ -54,12 +54,7 @@ class EditingViewController: BlockTableViewController {
             ],
             onReorder: { [unowned self] origin, destination in
                 self.items.moveObjectAtIndex(origin.row, toIndex: destination.row)
-            },
-            middleware: Middleware(
-                tableViewCellMiddleware: [
-                    TableViewCellMiddleware.noCellSelectionStyle
-                ]
-            )
+            }
         )
     }
 }

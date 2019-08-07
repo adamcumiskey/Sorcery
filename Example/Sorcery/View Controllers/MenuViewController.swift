@@ -30,11 +30,6 @@ class MenuViewController: BlockTableViewController {
                         }, onSelect: { [unowned self] _ in
                             cellTypesViewController.title = "Cell Types"
                             self.navigationController?.pushViewController(cellTypesViewController, animated: true)
-                        }),
-                        Item(configure: { (cell: UITableViewCell) in
-                            cell.textLabel?.text = "Middleware"
-                        }, onSelect: { [unowned self] _ in
-                            self.navigationController?.pushViewController(MiddlewareViewController(), animated: true)
                         })
                     ]
                 ),
@@ -48,12 +43,7 @@ class MenuViewController: BlockTableViewController {
                         })
                     ]
                 )
-            ],
-            middleware: Middleware(
-                tableViewCellMiddleware: [
-                    TableViewCellMiddleware.disclosureIndicators
-                ]
-            )
+            ]
         )
     }
 }

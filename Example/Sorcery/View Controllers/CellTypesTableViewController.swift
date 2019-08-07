@@ -21,11 +21,6 @@ let cellTypesViewController = BlockTableViewController(
                 cell.detailTextLabel?.text = "Sorcery automatically registers and loads the correct cell by using the class specified in the configure block."
                 cell.detailTextLabel?.numberOfLines = 0
             }
-        ],
-        middleware: Middleware(
-            tableViewCellMiddleware: [
-                TableViewCellMiddleware.noCellSelectionStyle
-            ]
-        )
+        ]
     )
 )

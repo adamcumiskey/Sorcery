@@ -23,8 +23,6 @@
 		661416C420F295CB003A271D /* InformationHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416AF20F295CB003A271D /* InformationHeaderFooterView.swift */; };
 		661416C520F295CB003A271D /* InformationHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 661416B020F295CB003A271D /* InformationHeaderFooterView.xib */; };
 		661416C620F295CB003A271D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B120F295CB003A271D /* MenuViewController.swift */; };
-		661416C720F295CB003A271D /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B220F295CB003A271D /* Middleware.swift */; };
-		661416C820F295CB003A271D /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B320F295CB003A271D /* MiddlewareViewController.swift */; };
 		661416C920F295CB003A271D /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B420F295CB003A271D /* SubtitleTableViewCell.swift */; };
 		661416CB20F2964F003A271D /* Sorcery.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 661416CA20F2964F003A271D /* Sorcery.podspec */; };
 		66CD41C920DC7E030045E2AD /* SorceryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD41C820DC7E030045E2AD /* SorceryTests.swift */; };
@@ -64,8 +62,6 @@
 		661416AF20F295CB003A271D /* InformationHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationHeaderFooterView.swift; sourceTree = "<group>"; };
 		661416B020F295CB003A271D /* InformationHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationHeaderFooterView.xib; sourceTree = "<group>"; };
 		661416B120F295CB003A271D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		661416B220F295CB003A271D /* Middleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
-		661416B320F295CB003A271D /* MiddlewareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		661416B420F295CB003A271D /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		661416CA20F2964F003A271D /* Sorcery.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sorcery.podspec; path = ../Sorcery.podspec; sourceTree = "<group>"; };
 		66CD41C620DC7E030045E2AD /* SorceryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SorceryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +154,6 @@
 			children = (
 				661416A720F295CB003A271D /* EditingViewController.swift */,
 				661416A820F295CB003A271D /* ExampleCollectionViewController.swift */,
-				661416B320F295CB003A271D /* MiddlewareViewController.swift */,
 				661416B120F295CB003A271D /* MenuViewController.swift */,
 				661416A620F295CB003A271D /* CellTypesTableViewController.swift */,
 			);
@@ -185,7 +180,6 @@
 		661416CE20F296F9003A271D /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				661416B220F295CB003A271D /* Middleware.swift */,
 				6614169F20F295CB003A271D /* Array.swift */,
 			);
 			path = Util;
@@ -279,6 +273,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -403,11 +398,9 @@
 			files = (
 				661416B520F295CB003A271D /* AppDelegate.swift in Sources */,
 				661416C620F295CB003A271D /* MenuViewController.swift in Sources */,
-				661416C720F295CB003A271D /* Middleware.swift in Sources */,
 				661416BD20F295CB003A271D /* ExampleCollectionViewController.swift in Sources */,
 				661416C220F295CB003A271D /* InformationCollectionReusableView.swift in Sources */,
 				661416BB20F295CB003A271D /* CellTypesTableViewController.swift in Sources */,
-				661416C820F295CB003A271D /* MiddlewareViewController.swift in Sources */,
 				661416BE20F295CB003A271D /* ImageCollectionViewCell.swift in Sources */,
 				661416B620F295CB003A271D /* Array.swift in Sources */,
 				661416C920F295CB003A271D /* SubtitleTableViewCell.swift in Sources */,

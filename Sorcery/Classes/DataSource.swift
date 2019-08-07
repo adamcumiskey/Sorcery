@@ -36,6 +36,8 @@ public typealias IndexPathBlock = (_ indexPath: IndexPath) -> Void
 public typealias ReorderBlock = (_ sourceIndex: IndexPath, _ destinationIndex: IndexPath) -> Void
 /// Callback with IndexPath and completion block parameters used for Swipe actions
 public typealias SwipeBlock = (_ indexPath: IndexPath, _ completion: (Bool) -> Void) -> Void
+/// Callback for when a view will become visible
+public typealias WillDisplayBlock = (_ cell: UIView, _ indexPath: IndexPath) -> Void
 
 // MARK: - DataSource
 
@@ -50,8 +52,6 @@ open class DataSource: NSObject {
     public var onReorder: ReorderBlock?
     /// Collection of callbacks used for handling `UIScrollViewDelegate` events
     public var scroll: Scroll?
-    /// All the `Middleware` for this `DataSource`
-    public var middleware: Middleware?
 
     /**
      Initialize a `DataSource`
@@ -65,23 +65,21 @@ open class DataSource: NSObject {
     public init(
         sections: [Section],
         onReorder: ReorderBlock? = nil,
-        scroll: Scroll? = nil,
-        middleware: Middleware? = nil
+        scroll: Scroll? = nil
     ) {
         self.sections = sections
         self.onReorder = onReorder
         self.scroll = scroll
-        self.middleware = middleware
     }
 
     /// Convenience initializer to construct a DataSource with a single section
-    public convenience init(section: Section, onReorder: ReorderBlock? = nil, scroll: Scroll? = nil, middleware: Middleware? = nil) {
-        self.init(sections: [section], onReorder: onReorder, scroll: scroll, middleware: middleware)
+    public convenience init(section: Section, onReorder: ReorderBlock? = nil, scroll: Scroll? = nil) {
+        self.init(sections: [section], onReorder: onReorder, scroll: scroll)
     }
 
     /// Convenience initializer to construct a DataSource with an array of items
-    public convenience init(items: [Item], onReorder: ReorderBlock? = nil, scroll: Scroll? = nil, middleware: Middleware? = nil) {
-        self.init(sections: [Section(items: items)], onReorder: onReorder, scroll: scroll, middleware: middleware)
+    public convenience init(items: [Item], onReorder: ReorderBlock? = nil, scroll: Scroll? = nil) {
+        self.init(sections: [Section(items: items)], onReorder: onReorder, scroll: scroll)
     }
 
     /// Reference section with `DataSource[sectionIndex]`
@@ -139,6 +137,8 @@ public class Reusable {
     public let viewClass: UIView.Type
     /// A block which takes a `UIView` and configures it
     public let configure: ConfigureBlock
+    /// The callback for when the reusable is about to appear on screen
+    public let willDisplay: WillDisplayBlock
     /// The reuse identifier to use when recycling the view element
     public var reuseIdentifier: String {
         if let customReuseIdentifier = customReuseIdentifier {
@@ -153,18 +153,34 @@ public class Reusable {
     /** Create a new reusable
      
      - parameters:
-     - reuseIdentifier: Custom reuseIdentifier to use for this `Reusable`. Default is the view's classname.
-     - configure
+         - reuseIdentifier: Custom reuseIdentifier to use for this `Reusable`. Default is the view's classname.
+         - willDisplay: The block called when the reusable is about to appear on screen
+         - configure: The block used to configure the cell
      */
     public init<View: UIView>(
         reuseIdentifier: String? = nil,
+        willDisplay: ((View, IndexPath) -> Void)? = nil,
         configure: @escaping (View) -> Void
     ) {
-        self.configure = { view in
-            configure(view as! View)
-        }
         self.viewClass = View.self
         self.customReuseIdentifier = reuseIdentifier
+
+        self.willDisplay = { view, indexPath in
+            guard let willDisplay = willDisplay else { return }
+            guard let view = view as? View else {
+                assertionFailure("Failed to call `willDisplay` for cell. Invalid View class: \(String(describing: View.self))")
+                return
+            }
+            willDisplay(view, indexPath)
+        }
+
+        self.configure = { view in
+            guard let view = view as? View else {
+                assertionFailure("Failed to call `configure` for cell. Invalid View class: \(String(describing: View.self))")
+                return
+            }
+            configure(view)
+        }
     }
 }
 
@@ -194,6 +210,7 @@ public class Item: Reusable {
      */
     public init<View: UIView>(
         configure: @escaping (View) -> Void,
+        willDisplay: ((View, IndexPath) -> Void)? = nil,
         onSelect: IndexPathBlock? = nil,
         onDelete: IndexPathBlock? = nil,
         leadingActions: [SwipeAction]? = nil,
@@ -208,7 +225,7 @@ public class Item: Reusable {
         self.trailingActions = trailingActions
         self.performsFirstActionWithFullSwipe = performsFirstActionWithFullSwipe
         self.reorderable = reorderable
-        super.init(reuseIdentifier: reuseIdentifier, configure: configure)
+        super.init(reuseIdentifier: reuseIdentifier, willDisplay: willDisplay, configure: configure)
     }
 
     /// Convenience initializer for trailing closure initialization
@@ -371,23 +388,19 @@ extension DataSource: UITableViewDataSource {
 
 extension DataSource: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        middleware?.tableViewCellMiddleware?.forEach { $0.apply(cell, indexPath, self) }
+        self[indexPath].willDisplay(cell, indexPath)
     }
 
     public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = self[section].header else { return }
-        header.configure(view)
+        self[section].header?.willDisplay(view, IndexPath(item: Int.min, section: section))
     }
 
     public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        guard let footer = self[section].footer else { return }
-        footer.configure(view)
+        self[section].footer?.willDisplay(view, IndexPath(item: Int.max, section: section))
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let onSelect = self[indexPath].onSelect {
-            onSelect(indexPath)
-        }
+        self[indexPath].onSelect?(indexPath)
     }
 
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -409,7 +422,6 @@ extension DataSource: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = self[section].header else { return nil }
         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: header.reuseIdentifier) else { return nil }
-        middleware?.tableViewHeaderFooterViewMiddleware?.forEach { $0.apply(view, section, self) }
         header.configure(view)
         return view
     }
@@ -417,7 +429,6 @@ extension DataSource: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = self[section].footer else { return nil }
         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: footer.reuseIdentifier) else { return nil }
-        middleware?.tableViewHeaderFooterViewMiddleware?.forEach { $0.apply(view, section, self) }
         footer.configure(view)
         return view
     }
@@ -430,6 +441,8 @@ extension DataSource: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         return self[proposedDestinationIndexPath].reorderable ? proposedDestinationIndexPath : sourceIndexPath
     }
+
+    // MARK: Swipe Actions
 
     @available(iOS 11.0, *)
     public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -490,13 +503,11 @@ extension DataSource: UICollectionViewDataSource {
         if kind == UICollectionElementKindSectionHeader {
             guard let header = section.header else { return UICollectionReusableView() }
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: header.reuseIdentifier, for: indexPath)
-            middleware?.collectionReusableViewMiddleware?.forEach { $0.apply(view, indexPath, self) }
             header.configure(view)
             return view
         } else if kind == UICollectionElementKindSectionFooter {
             guard let footer = section.footer else { return UICollectionReusableView() }
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footer.reuseIdentifier, for: indexPath)
-            middleware?.collectionReusableViewMiddleware?.forEach { $0.apply(view, indexPath, self) }
             footer.configure(view)
             return view
         }
@@ -508,7 +519,17 @@ extension DataSource: UICollectionViewDataSource {
 
 extension DataSource: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        middleware?.collectionViewCellMiddleware?.forEach { $0.apply(cell, indexPath, self) }
+        self[indexPath].willDisplay(cell, indexPath)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        if elementKind == UICollectionElementKindSectionHeader {
+            self[indexPath.section].header?.willDisplay(view, indexPath)
+        } else if elementKind == UICollectionElementKindSectionFooter {
+            self[indexPath.section].footer?.willDisplay(view, indexPath)
+        } else {
+            self[indexPath].willDisplay(view, indexPath)
+        }
     }
 
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -516,9 +537,7 @@ extension DataSource: UICollectionViewDelegate {
     }
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let onSelect = self[indexPath].onSelect {
-            onSelect(indexPath)
-        }
+        self[indexPath].onSelect?(indexPath)
     }
 }
 
