@@ -28,6 +28,12 @@
 
 import UIKit
 
+/// Enum to model the two ways we can index something in the DataSource, by section or by IndexPath
+public enum Index {
+    case indexPath(IndexPath)
+    case section(Int)
+}
+
 /// Configures the UIView passed into the block
 public typealias ConfigureBlock = (UIView) -> Void
 /// Callback for an event at an IndexPath
@@ -36,6 +42,10 @@ public typealias IndexPathBlock = (_ indexPath: IndexPath) -> Void
 public typealias ReorderBlock = (_ sourceIndex: IndexPath, _ destinationIndex: IndexPath) -> Void
 /// Callback with IndexPath and completion block parameters used for Swipe actions
 public typealias SwipeBlock = (_ indexPath: IndexPath, _ completion: (Bool) -> Void) -> Void
+/// Block that can be called before or after a reusable is displayed.
+public typealias Middleware<T: UIView> = (T, Index, DataSource) -> Void
+/// Middleware for any UIView
+public typealias AnyMiddleware = Middleware<UIView>
 
 // MARK: - DataSource
 
@@ -50,8 +60,10 @@ open class DataSource: NSObject {
     public var onReorder: ReorderBlock?
     /// Collection of callbacks used for handling `UIScrollViewDelegate` events
     public var scroll: Scroll?
-    /// All the `Middleware` for this `DataSource`
-    public var middleware: Middleware?
+    /// Middleware applied to all reusables before they appear on-screen. Called before the Reusable's middleware.
+    public var willDisplayMiddleware: [AnyMiddleware]
+    /// Middleware applied to all reusables after the go off-screen. Called before the Reusable's middleware.
+    public var didEndDisplayingMiddleware: [AnyMiddleware]
 
     /**
      Initialize a `DataSource`
@@ -66,22 +78,48 @@ open class DataSource: NSObject {
         sections: [Section],
         onReorder: ReorderBlock? = nil,
         scroll: Scroll? = nil,
-        middleware: Middleware? = nil
+        willDisplayMiddleware: [AnyMiddleware] = [],
+        didEndDisplayingMiddleware: [AnyMiddleware] = []
     ) {
         self.sections = sections
         self.onReorder = onReorder
         self.scroll = scroll
-        self.middleware = middleware
+        self.willDisplayMiddleware = willDisplayMiddleware
+        self.didEndDisplayingMiddleware = didEndDisplayingMiddleware
     }
 
     /// Convenience initializer to construct a DataSource with a single section
-    public convenience init(section: Section, onReorder: ReorderBlock? = nil, scroll: Scroll? = nil, middleware: Middleware? = nil) {
-        self.init(sections: [section], onReorder: onReorder, scroll: scroll, middleware: middleware)
+    public convenience init(
+        section: Section,
+        onReorder: ReorderBlock? = nil,
+        scroll: Scroll? = nil,
+        willDisplayMiddleware: [AnyMiddleware] = [],
+        didEndDisplayingMiddleware: [AnyMiddleware] = []
+    ) {
+        self.init(
+            sections: [section],
+            onReorder: onReorder,
+            scroll: scroll,
+            willDisplayMiddleware: willDisplayMiddleware,
+            didEndDisplayingMiddleware: didEndDisplayingMiddleware
+        )
     }
 
     /// Convenience initializer to construct a DataSource with an array of items
-    public convenience init(items: [Item], onReorder: ReorderBlock? = nil, scroll: Scroll? = nil, middleware: Middleware? = nil) {
-        self.init(sections: [Section(items: items)], onReorder: onReorder, scroll: scroll, middleware: middleware)
+    public convenience init(
+        items: [Item],
+        onReorder: ReorderBlock? = nil,
+        scroll: Scroll? = nil,
+        willDisplayMiddleware: [AnyMiddleware] = [],
+        didEndDisplayingMiddleware: [AnyMiddleware] = []
+    ) {
+        self.init(
+            sections: [Section(items: items)],
+            onReorder: onReorder,
+            scroll: scroll,
+            willDisplayMiddleware: willDisplayMiddleware,
+            didEndDisplayingMiddleware: didEndDisplayingMiddleware
+        )
     }
 
     /// Reference section with `DataSource[sectionIndex]`
@@ -139,6 +177,10 @@ public class Reusable {
     public let viewClass: UIView.Type
     /// A block which takes a `UIView` and configures it
     public let configure: ConfigureBlock
+    /// A block called before the Reusable appears on-screen
+    public let willDisplay: AnyMiddleware?
+    /// A block called after the Reusable goes off-screen
+    public let didEndDisplaying: AnyMiddleware?
     /// The reuse identifier to use when recycling the view element
     public var reuseIdentifier: String {
         if let customReuseIdentifier = customReuseIdentifier {
@@ -154,14 +196,24 @@ public class Reusable {
      
      - parameters:
      - reuseIdentifier: Custom reuseIdentifier to use for this `Reusable`. Default is the view's classname.
-     - configure
+     - willDisplay: Middleware called before the reusable appears on-screen
+     - didEndDisplaying: Middleware called after this resuable disappears from the screen
+     - configure: The block used to configure this reusable
      */
     public init<View: UIView>(
         reuseIdentifier: String? = nil,
+        willDisplay: Middleware<View>? = nil,
+        didEndDisplaying: Middleware<View>? = nil,
         configure: @escaping (View) -> Void
     ) {
         self.configure = { view in
             configure(view as! View)
+        }
+        self.willDisplay = { view, indexPath, dataSource in
+            willDisplay?(view as! View, indexPath, dataSource)
+        }
+        self.didEndDisplaying = { view, indexPath, dataSource in
+            didEndDisplaying?(view as! View, indexPath, dataSource)
         }
         self.viewClass = View.self
         self.customReuseIdentifier = reuseIdentifier
@@ -186,6 +238,8 @@ public class Item: Reusable {
      - configure: The configuration block.
      - onSelect: The closure to execute when the item is tapped
      - onDelete: The closure to execute when the item is deleted
+     - willDisplay: Middleware called before the reusable appears on-screen
+     - didEndDisplaying: Middleware called after this resuable disappears from the screen
      - leadingActions: The swipe actions on the leading edge of the cell. (iOS 11.0+)
      - trailingActions: The swipe actions on the trailing edge of the cell. (iOS 11.0+)
      - performsFirstActionWithFullSwipe: Determines if the first action will be called when a full swipe gesture occurs on the cell.
@@ -196,6 +250,8 @@ public class Item: Reusable {
         configure: @escaping (View) -> Void,
         onSelect: IndexPathBlock? = nil,
         onDelete: IndexPathBlock? = nil,
+        willDisplay: Middleware<View>? = nil,
+        didEndDisplaying: Middleware<View>? = nil,
         leadingActions: [SwipeAction]? = nil,
         trailingActions: [SwipeAction]? = nil,
         performsFirstActionWithFullSwipe: Bool = true,
@@ -208,7 +264,12 @@ public class Item: Reusable {
         self.trailingActions = trailingActions
         self.performsFirstActionWithFullSwipe = performsFirstActionWithFullSwipe
         self.reorderable = reorderable
-        super.init(reuseIdentifier: reuseIdentifier, configure: configure)
+        super.init(
+            reuseIdentifier: reuseIdentifier,
+            willDisplay: willDisplay,
+            didEndDisplaying: didEndDisplaying,
+            configure: configure
+        )
     }
 
     /// Convenience initializer for trailing closure initialization
@@ -370,18 +431,11 @@ extension DataSource: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension DataSource: UITableViewDelegate {
+    // MARK: Cell
+
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        middleware?.tableViewCellMiddleware?.forEach { $0.apply(cell, indexPath, self) }
-    }
-
-    public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = self[section].header else { return }
-        header.configure(view)
-    }
-
-    public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        guard let footer = self[section].footer else { return }
-        footer.configure(view)
+        willDisplayMiddleware.forEach { $0(cell, .indexPath(indexPath), self) }
+        self[indexPath].willDisplay?(cell, .indexPath(indexPath), self)
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -389,6 +443,8 @@ extension DataSource: UITableViewDelegate {
             onSelect(indexPath)
         }
     }
+
+    // MARK: Header/Footer
 
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.tableView(tableView, viewForHeaderInSection: section) != nil || self[section].headerText != nil {
@@ -409,7 +465,6 @@ extension DataSource: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = self[section].header else { return nil }
         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: header.reuseIdentifier) else { return nil }
-        middleware?.tableViewHeaderFooterViewMiddleware?.forEach { $0.apply(view, section, self) }
         header.configure(view)
         return view
     }
@@ -417,9 +472,28 @@ extension DataSource: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = self[section].footer else { return nil }
         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: footer.reuseIdentifier) else { return nil }
-        middleware?.tableViewHeaderFooterViewMiddleware?.forEach { $0.apply(view, section, self) }
         footer.configure(view)
         return view
+    }
+
+    public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        willDisplayMiddleware.forEach { $0(view, .section(section), self) }
+        self[section].header?.willDisplay?(view, .section(section), self)
+    }
+
+    public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        willDisplayMiddleware.forEach { $0(view, .section(section), self) }
+        self[section].footer?.willDisplay?(view, .section(section), self)
+    }
+
+    public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        didEndDisplayingMiddleware.forEach { $0(view, .section(section), self) }
+        self[section].header?.didEndDisplaying?(view, .section(section), self)
+    }
+
+    public func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+        didEndDisplayingMiddleware.forEach { $0(view, .section(section), self) }
+        self[section].header?.didEndDisplaying?(view, .section(section), self)
     }
 
     public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -430,6 +504,8 @@ extension DataSource: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         return self[proposedDestinationIndexPath].reorderable ? proposedDestinationIndexPath : sourceIndexPath
     }
+
+    // MARK: Swipe Actions
 
     @available(iOS 11.0, *)
     public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -490,13 +566,11 @@ extension DataSource: UICollectionViewDataSource {
         if kind == UICollectionElementKindSectionHeader {
             guard let header = section.header else { return UICollectionReusableView() }
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: header.reuseIdentifier, for: indexPath)
-            middleware?.collectionReusableViewMiddleware?.forEach { $0.apply(view, indexPath, self) }
             header.configure(view)
             return view
         } else if kind == UICollectionElementKindSectionFooter {
             guard let footer = section.footer else { return UICollectionReusableView() }
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footer.reuseIdentifier, for: indexPath)
-            middleware?.collectionReusableViewMiddleware?.forEach { $0.apply(view, indexPath, self) }
             footer.configure(view)
             return view
         }
@@ -507,8 +581,16 @@ extension DataSource: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension DataSource: UICollectionViewDelegate {
+    // MARK: Cell
+
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        middleware?.collectionViewCellMiddleware?.forEach { $0.apply(cell, indexPath, self) }
+        willDisplayMiddleware.forEach { $0(cell, .indexPath(indexPath), self) }
+        self[indexPath].willDisplay?(cell, .indexPath(indexPath), self)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        didEndDisplayingMiddleware.forEach { $0(cell, .indexPath(indexPath), self) }
+        self[indexPath].didEndDisplaying?(cell, .indexPath(indexPath), self)
     }
 
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -519,6 +601,18 @@ extension DataSource: UICollectionViewDelegate {
         if let onSelect = self[indexPath].onSelect {
             onSelect(indexPath)
         }
+    }
+
+    // MARK: Supplementary View
+
+    public func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        willDisplayMiddleware.forEach { $0(view, .indexPath(indexPath), self) }
+        self[indexPath].willDisplay?(view, .indexPath(indexPath), self)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
+        didEndDisplayingMiddleware.forEach { $0(view, .indexPath(indexPath), self) }
+        self[indexPath].didEndDisplaying?(view, .indexPath(indexPath), self)
     }
 }
 

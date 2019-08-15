@@ -29,12 +29,10 @@ class MiddlewareViewController: BlockTableViewController {
                     footerText: "Middleware can be created for items, section headers/footers, and table/collection views"
                 )
             ],
-            middleware: Middleware(
-                tableViewCellMiddleware: [
-                    TableViewCellMiddleware.noCellSelectionStyle,
-                    TableViewCellMiddleware.cellGradient
-                ]
-            )
+            willDisplayMiddleware: [
+                noCellSelectionStyle,
+                cellGradient
+            ]
         )
     }
 }

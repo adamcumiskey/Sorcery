@@ -27,20 +27,8 @@
 		661416C820F295CB003A271D /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B320F295CB003A271D /* MiddlewareViewController.swift */; };
 		661416C920F295CB003A271D /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B420F295CB003A271D /* SubtitleTableViewCell.swift */; };
 		661416CB20F2964F003A271D /* Sorcery.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 661416CA20F2964F003A271D /* Sorcery.podspec */; };
-		66CD41C920DC7E030045E2AD /* SorceryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD41C820DC7E030045E2AD /* SorceryTests.swift */; };
-		8674CDE978D90661F1B29929 /* Pods_Sorcery_Example_SorceryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E675341B121D8C1C05D5F2F /* Pods_Sorcery_Example_SorceryTests.framework */; };
 		D67D829262BB15114F02DE72 /* Pods_Sorcery_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459AE6629C3C997CCFD80D14 /* Pods_Sorcery_Example.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		66CD41CB20DC7E030045E2AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
-			remoteInfo = Sorcery_Example;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1E675341B121D8C1C05D5F2F /* Pods_Sorcery_Example_SorceryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sorcery_Example_SorceryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,9 +56,6 @@
 		661416B320F295CB003A271D /* MiddlewareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		661416B420F295CB003A271D /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		661416CA20F2964F003A271D /* Sorcery.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sorcery.podspec; path = ../Sorcery.podspec; sourceTree = "<group>"; };
-		66CD41C620DC7E030045E2AD /* SorceryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SorceryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66CD41C820DC7E030045E2AD /* SorceryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorceryTests.swift; sourceTree = "<group>"; };
-		66CD41CA20DC7E030045E2AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		845312344886411B746B011C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9C65F17F9CA29D25BFA369B9 /* Pods-Sorcery_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sorcery_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sorcery_Example/Pods-Sorcery_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BF9C8F3C43CC342446B37DF0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -84,14 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D67D829262BB15114F02DE72 /* Pods_Sorcery_Example.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66CD41C320DC7E030045E2AD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8674CDE978D90661F1B29929 /* Pods_Sorcery_Example_SorceryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +91,6 @@
 			children = (
 				6614169D20F295CB003A271D /* Sorcery */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				66CD41C720DC7E030045E2AD /* SorceryTests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				2705DA0C14C92AD35A83386E /* Pods */,
 				7A3C49E629CE863AAEAC4ED4 /* Frameworks */,
@@ -125,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* Sorcery_Example.app */,
-				66CD41C620DC7E030045E2AD /* SorceryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,15 +166,6 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		66CD41C720DC7E030045E2AD /* SorceryTests */ = {
-			isa = PBXGroup;
-			children = (
-				66CD41C820DC7E030045E2AD /* SorceryTests.swift */,
-				66CD41CA20DC7E030045E2AD /* Info.plist */,
-			);
-			path = SorceryTests;
-			sourceTree = "<group>";
-		};
 		7A3C49E629CE863AAEAC4ED4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,26 +197,6 @@
 			productReference = 607FACD01AFB9204008FA782 /* Sorcery_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		66CD41C520DC7E030045E2AD /* SorceryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66CD41CD20DC7E030045E2AD /* Build configuration list for PBXNativeTarget "SorceryTests" */;
-			buildPhases = (
-				944CE53BD31E3BA16193310D /* [CP] Check Pods Manifest.lock */,
-				66CD41C220DC7E030045E2AD /* Sources */,
-				66CD41C320DC7E030045E2AD /* Frameworks */,
-				66CD41C420DC7E030045E2AD /* Resources */,
-				4525506145486CEDF3E8355E /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66CD41CC20DC7E030045E2AD /* PBXTargetDependency */,
-			);
-			name = SorceryTests;
-			productName = SorceryTests;
-			productReference = 66CD41C620DC7E030045E2AD /* SorceryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -263,14 +209,8 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = LRNC44UMYU;
+						DevelopmentTeam = X8C69U22LW;
 						LastSwiftMigration = 0940;
-					};
-					66CD41C520DC7E030045E2AD = {
-						CreatedOnToolsVersion = 9.4.1;
-						DevelopmentTeam = LRNC44UMYU;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
 			};
@@ -279,6 +219,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -288,7 +229,6 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* Sorcery_Example */,
-				66CD41C520DC7E030045E2AD /* SorceryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -305,13 +245,6 @@
 				661416BA20F295CB003A271D /* BedazzledTableViewCell.xib in Resources */,
 				661416BF20F295CB003A271D /* ImageCollectionViewCell.xib in Resources */,
 				661416B720F295CB003A271D /* LaunchScreen.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66CD41C420DC7E030045E2AD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,53 +269,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4525506145486CEDF3E8355E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Sorcery_Example-SorceryTests/Pods-Sorcery_Example-SorceryTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Sorcery/Sorcery.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sorcery.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sorcery_Example-SorceryTests/Pods-Sorcery_Example-SorceryTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		944CE53BD31E3BA16193310D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Sorcery_Example-SorceryTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		96FE2C6C73BACA4585439C97 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Sorcery_Example/Pods-Sorcery_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Sorcery_Example/Pods-Sorcery_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Sorcery/Sorcery.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -391,7 +284,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sorcery_Example/Pods-Sorcery_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sorcery_Example/Pods-Sorcery_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -417,23 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66CD41C220DC7E030045E2AD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66CD41C920DC7E030045E2AD /* SorceryTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		66CD41CC20DC7E030045E2AD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 607FACCF1AFB9204008FA782 /* Sorcery_Example */;
-			targetProxy = 66CD41CB20DC7E030045E2AD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		661416A020F295CB003A271D /* LaunchScreen.xib */ = {
@@ -556,7 +433,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LRNC44UMYU;
+				DEVELOPMENT_TEAM = X8C69U22LW;
 				INFOPLIST_FILE = Sorcery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -573,7 +450,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LRNC44UMYU;
+				DEVELOPMENT_TEAM = X8C69U22LW;
 				INFOPLIST_FILE = Sorcery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -581,78 +458,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		66CD41CE20DC7E030045E2AD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5870648FE14B89B3067D13D5 /* Pods-Sorcery_Example-SorceryTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = LRNC44UMYU;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = SorceryTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adamcumiskey.SorceryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sorcery_Example.app/Sorcery_Example";
-			};
-			name = Debug;
-		};
-		66CD41CF20DC7E030045E2AD /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEA5FF71DB17544FA6CC848A /* Pods-Sorcery_Example-SorceryTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LRNC44UMYU;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = SorceryTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adamcumiskey.SorceryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sorcery_Example.app/Sorcery_Example";
 			};
 			name = Release;
 		};
@@ -673,15 +478,6 @@
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
 				607FACF11AFB9204008FA782 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66CD41CD20DC7E030045E2AD /* Build configuration list for PBXNativeTarget "SorceryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66CD41CE20DC7E030045E2AD /* Debug */,
-				66CD41CF20DC7E030045E2AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

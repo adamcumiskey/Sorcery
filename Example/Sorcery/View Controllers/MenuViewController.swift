@@ -49,11 +49,9 @@ class MenuViewController: BlockTableViewController {
                     ]
                 )
             ],
-            middleware: Middleware(
-                tableViewCellMiddleware: [
-                    TableViewCellMiddleware.disclosureIndicators
-                ]
-            )
+            willDisplayMiddleware: [
+                disclosureIndicators
+            ]
         )
     }
 }

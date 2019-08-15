@@ -1,6 +1,0 @@
-framework module Pods_Sorcery_Example_SorceryTests {
-  umbrella header "Pods-Sorcery_Example-SorceryTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

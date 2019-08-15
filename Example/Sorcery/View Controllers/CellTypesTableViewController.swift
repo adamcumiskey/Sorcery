@@ -22,10 +22,6 @@ let cellTypesViewController = BlockTableViewController(
                 cell.detailTextLabel?.numberOfLines = 0
             }
         ],
-        middleware: Middleware(
-            tableViewCellMiddleware: [
-                TableViewCellMiddleware.noCellSelectionStyle
-            ]
-        )
+        willDisplayMiddleware: [noCellSelectionStyle]
     )
 )

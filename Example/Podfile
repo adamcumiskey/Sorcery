@@ -2,9 +2,4 @@ use_frameworks!
 
 target 'Sorcery_Example' do
   pod 'Sorcery', :path => '../'
-
-  target 'SorceryTests' do
-    pod 'Quick'
-    pod 'Nimble'
-  end
 end

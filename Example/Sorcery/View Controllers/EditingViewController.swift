@@ -35,6 +35,9 @@ class EditingViewController: BlockTableViewController {
                             onDelete: { [unowned self] indexPath in
                                 self.items.remove(at: indexPath.row)
                             },
+                            willDisplay: { (cell: UITableViewCell, _, _) in
+                                print("Displaying item: ", item)
+                            },
                             trailingActions: [
                                 SwipeAction(
                                     title: "Remove",
@@ -55,11 +58,9 @@ class EditingViewController: BlockTableViewController {
             onReorder: { [unowned self] origin, destination in
                 self.items.moveObjectAtIndex(origin.row, toIndex: destination.row)
             },
-            middleware: Middleware(
-                tableViewCellMiddleware: [
-                    TableViewCellMiddleware.noCellSelectionStyle
-                ]
-            )
+            willDisplayMiddleware: [
+                noCellSelectionStyle
+            ]
         )
     }
 }
