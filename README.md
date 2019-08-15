@@ -1,8 +1,8 @@
-# Sorcery
+# DataSorcery
 
-[![Version](https://img.shields.io/cocoapods/v/Sorcery.svg?style=flat)](http://cocoapods.org/pods/Sorcery)
-[![License](https://img.shields.io/cocoapods/l/Sorcery.svg?style=flat)](http://cocoapods.org/pods/Sorcery)
-[![Platform](https://img.shields.io/cocoapods/p/Sorcery.svg?style=flat)](http://cocoapods.org/pods/Sorcery)
+[![Version](https://img.shields.io/cocoapods/v/Sorcery.svg?style=flat)](http://cocoapods.org/pods/DataSorcery)
+[![License](https://img.shields.io/cocoapods/l/Sorcery.svg?style=flat)](http://cocoapods.org/pods/DataSorcery)
+[![Platform](https://img.shields.io/cocoapods/p/Sorcery.svg?style=flat)](http://cocoapods.org/pods/DataSorcery)
 
 Conjure tables and collections out of thin air
 
@@ -41,11 +41,11 @@ let vc = BlockTableViewController(
 
 ## Installation
 
-Sorcery is available through [CocoaPods](http://cocoapods.org). To install
+DataSorcery is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "Sorcery"
+pod "DataSorcery"
 ```
 
 ## Author
