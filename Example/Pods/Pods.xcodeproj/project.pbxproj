@@ -7,83 +7,105 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		024C6E7E3430F272A460343875285599 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		0DC314FC8BE658BEBCB30CFEABD7948A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		31B459508511077F5CBFCA410210DA53 /* Sorcery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 10D76B8D0D7381F33036C3EA17B35F79 /* Sorcery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BB5E3EA3D13A92B3AE0E4FE55B511703 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F26CD5B3F5D6AD351432AA97135DE0 /* ViewControllers.swift */; };
-		C7BAB674192FE0C546682DD178C080AC /* Sorcery-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138380F7D262565373AC60255FD53E8 /* Sorcery-dummy.m */; };
-		D78CA5EFB18035C9663C295EB4714C8D /* Pods-Sorcery_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA902FC3F96561403C361DBCBDB72173 /* Pods-Sorcery_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DC921DA6F59E73C5879E54AA8F697721 /* Pods-Sorcery_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EAAC006F32222733CF0F5B2E520B8E /* Pods-Sorcery_Example-dummy.m */; };
-		EBA9911955BBA98653006E044E97764C /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5882DE7886D464833C68E14DA373CD16 /* DataSource.swift */; };
+		08E6A5A63C19E33E66DC0877C3A022D8 /* DataSorcery-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FB6ABB5724A1E62CB955F672E10BDE /* DataSorcery-dummy.m */; };
+		395C87634FD3B963F48A1EC1B1B44F41 /* Pods-Sorcery_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EAAC006F32222733CF0F5B2E520B8E /* Pods-Sorcery_Example-dummy.m */; };
+		40AC65536C4DB307C89FC6D56AC9C15F /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA32886EEDC665A4BA527CB21BD26A8 /* DataSource.swift */; };
+		4D4C5CE373A205696CD4AE0DBF15AF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		568A779EA60DF93A87B7A32281493635 /* DataSorcery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7881B084F23C9B583D914BC7021A50B0 /* DataSorcery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE80F93E0F18443FF7899A88ECEACB9E /* Pods-Sorcery_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA902FC3F96561403C361DBCBDB72173 /* Pods-Sorcery_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E5D0F916C407CAFC8534F6EB95A65406 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2104C54C0C2AFFDDD7C3C867D54AB4CD /* ViewControllers.swift */; };
+		FD46182B63508B372116450ED99F0EA0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D26D54E941F5A580D10A300F2648A381 /* PBXContainerItemProxy */ = {
+		A8840828D96B3E429203BF07DF49E21B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 57AB2D2F55BCE0999172C2D64D7AA748;
-			remoteInfo = Sorcery;
+			remoteGlobalIDString = 3E41CEE720431AC845C761F85A2C5501;
+			remoteInfo = DataSorcery;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0138380F7D262565373AC60255FD53E8 /* Sorcery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Sorcery-dummy.m"; sourceTree = "<group>"; };
-		01F26CD5B3F5D6AD351432AA97135DE0 /* ViewControllers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewControllers.swift; path = Sorcery/Classes/ViewControllers.swift; sourceTree = "<group>"; };
 		08EAAC006F32222733CF0F5B2E520B8E /* Pods-Sorcery_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Sorcery_Example-dummy.m"; sourceTree = "<group>"; };
-		10D76B8D0D7381F33036C3EA17B35F79 /* Sorcery-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Sorcery-umbrella.h"; sourceTree = "<group>"; };
-		1BB84CC35BB828116885FB3AF42A12D0 /* Sorcery.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Sorcery.xcconfig; sourceTree = "<group>"; };
+		1E1893BF215A3E675D1A4D8D8A2DD0F6 /* DataSorcery-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DataSorcery-Info.plist"; sourceTree = "<group>"; };
+		2104C54C0C2AFFDDD7C3C867D54AB4CD /* ViewControllers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewControllers.swift; path = Sorcery/Classes/ViewControllers.swift; sourceTree = "<group>"; };
+		28A4ECFD31B721BAF6D816EEC445AF6C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2C39E352FEF1451C7BB5BA9C760CCBD4 /* DataSorcery-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DataSorcery-prefix.pch"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		368736605C4BB67AB3EBA029305A8758 /* DataSorcery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSorcery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7BAB1DC71D1EF0135679EB38B3A9AA /* Pods-Sorcery_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sorcery_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		534A4A870D628F0AE3ED74D4388597AA /* Pods-Sorcery_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sorcery_Example-frameworks.sh"; sourceTree = "<group>"; };
-		5882DE7886D464833C68E14DA373CD16 /* DataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Sorcery/Classes/DataSource.swift; sourceTree = "<group>"; };
-		665899C66CFF12AE4BFEEDA105BFADB7 /* Pods_Sorcery_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Sorcery_Example.framework; path = "Pods-Sorcery_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7351FF54190F1E05435F4EC868B5B28C /* Sorcery-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Sorcery-prefix.pch"; sourceTree = "<group>"; };
-		78F0A9FF1CB7747ED408F31988901B3A /* Sorcery.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Sorcery.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		6399F088616653304E6F4B199DBC7AD8 /* DataSorcery.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = DataSorcery.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		665899C66CFF12AE4BFEEDA105BFADB7 /* Pods_Sorcery_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sorcery_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7881B084F23C9B583D914BC7021A50B0 /* DataSorcery-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DataSorcery-umbrella.h"; sourceTree = "<group>"; };
 		7C2118FBC97D6BCAEFB93FE5C50632B1 /* Pods-Sorcery_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Sorcery_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7C7F130F944C2045649919CD6A2033A7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		831CEE6839473042BFB6BACADA32A3A9 /* Pods-Sorcery_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sorcery_Example-Info.plist"; sourceTree = "<group>"; };
 		8E11CEF9150568A831A12BF973C88AE9 /* Pods-Sorcery_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sorcery_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9D7626558C25AB345A8C2576BF2072D0 /* Pods-Sorcery_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sorcery_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0FB6ABB5724A1E62CB955F672E10BDE /* DataSorcery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DataSorcery-dummy.m"; sourceTree = "<group>"; };
 		AA902FC3F96561403C361DBCBDB72173 /* Pods-Sorcery_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Sorcery_Example-umbrella.h"; sourceTree = "<group>"; };
-		B1E59DA497FC271B716A630B3195E673 /* Sorcery-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Sorcery-Info.plist"; sourceTree = "<group>"; };
-		C348A0113DFC07EE017B6C53CC2DFD90 /* Sorcery.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Sorcery.modulemap; sourceTree = "<group>"; };
+		B6F682E3E554056CB30E77C4E9B451BF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DB528272444DC63CA6C715890FB26CB6 /* Pods-Sorcery_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Sorcery_Example.modulemap"; sourceTree = "<group>"; };
-		F59EE3D9400C140CB57DFC3155DAF67C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		F7A9228127FB06B31387D19C4FA3F0BB /* Sorcery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Sorcery.framework; path = Sorcery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDA32886EEDC665A4BA527CB21BD26A8 /* DataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Sorcery/Classes/DataSource.swift; sourceTree = "<group>"; };
+		EFD83549BB9FDE28A084B6CBFD5DF260 /* DataSorcery.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DataSorcery.modulemap; sourceTree = "<group>"; };
+		FBC922B8552534E736108599DA9F3B52 /* DataSorcery.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DataSorcery.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4814C932CDE643973160308FAA62B244 /* Frameworks */ = {
+		56C14E24CF19552435F18FA104138B12 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DC314FC8BE658BEBCB30CFEABD7948A /* Foundation.framework in Frameworks */,
+				FD46182B63508B372116450ED99F0EA0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		73A272389D7398E5D080328800FF6AFB /* Frameworks */ = {
+		F9D78BB43FCBF6A09EDF9922A1CE654C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				024C6E7E3430F272A460343875285599 /* Foundation.framework in Frameworks */,
+				4D4C5CE373A205696CD4AE0DBF15AF4A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		32CB22295B9B1C1ACA2DF73138424CA4 /* Sorcery */ = {
+		265EDA3C49BB9B4F27EF56120ED92A41 /* DataSorcery */ = {
 			isa = PBXGroup;
 			children = (
-				5882DE7886D464833C68E14DA373CD16 /* DataSource.swift */,
-				01F26CD5B3F5D6AD351432AA97135DE0 /* ViewControllers.swift */,
-				F3497394420A180BEF2BDA5D3A04D60C /* Pod */,
-				E0D551172646D1B8C9BCFC57078E49BC /* Support Files */,
+				DDA32886EEDC665A4BA527CB21BD26A8 /* DataSource.swift */,
+				2104C54C0C2AFFDDD7C3C867D54AB4CD /* ViewControllers.swift */,
+				F9C214D772D64B0E4B25E552AC1D1D15 /* Pod */,
+				6F19997BF40DC4DD1904BBDB3E38DFDE /* Support Files */,
 			);
-			name = Sorcery;
+			name = DataSorcery;
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		6F19997BF40DC4DD1904BBDB3E38DFDE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EFD83549BB9FDE28A084B6CBFD5DF260 /* DataSorcery.modulemap */,
+				FBC922B8552534E736108599DA9F3B52 /* DataSorcery.xcconfig */,
+				A0FB6ABB5724A1E62CB955F672E10BDE /* DataSorcery-dummy.m */,
+				1E1893BF215A3E675D1A4D8D8A2DD0F6 /* DataSorcery-Info.plist */,
+				2C39E352FEF1451C7BB5BA9C760CCBD4 /* DataSorcery-prefix.pch */,
+				7881B084F23C9B583D914BC7021A50B0 /* DataSorcery-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/DataSorcery";
+			sourceTree = "<group>";
+		};
+		7A0EFC03477EE1E025D478811F6CD21E /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				265EDA3C49BB9B4F27EF56120ED92A41 /* DataSorcery */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		9A15263FF0F0760D984245CFFEFE7F83 /* Pods-Sorcery_Example */ = {
@@ -103,15 +125,6 @@
 			path = "Target Support Files/Pods-Sorcery_Example";
 			sourceTree = "<group>";
 		};
-		BA875A08C2B75E5363E843AA7BA06BC4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				665899C66CFF12AE4BFEEDA105BFADB7 /* Pods_Sorcery_Example.framework */,
-				F7A9228127FB06B31387D19C4FA3F0BB /* Sorcery.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,9 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				E7A38C7710575E7CA76601B9C14F2E82 /* Development Pods */,
+				7A0EFC03477EE1E025D478811F6CD21E /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				BA875A08C2B75E5363E843AA7BA06BC4 /* Products */,
+				DD9CEB2635713C1AC7CCDBDE73E84476 /* Products */,
 				D4448922567E516A0CD39DD84125FE62 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -147,34 +160,21 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		E0D551172646D1B8C9BCFC57078E49BC /* Support Files */ = {
+		DD9CEB2635713C1AC7CCDBDE73E84476 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C348A0113DFC07EE017B6C53CC2DFD90 /* Sorcery.modulemap */,
-				1BB84CC35BB828116885FB3AF42A12D0 /* Sorcery.xcconfig */,
-				0138380F7D262565373AC60255FD53E8 /* Sorcery-dummy.m */,
-				B1E59DA497FC271B716A630B3195E673 /* Sorcery-Info.plist */,
-				7351FF54190F1E05435F4EC868B5B28C /* Sorcery-prefix.pch */,
-				10D76B8D0D7381F33036C3EA17B35F79 /* Sorcery-umbrella.h */,
+				368736605C4BB67AB3EBA029305A8758 /* DataSorcery.framework */,
+				665899C66CFF12AE4BFEEDA105BFADB7 /* Pods_Sorcery_Example.framework */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Sorcery";
+			name = Products;
 			sourceTree = "<group>";
 		};
-		E7A38C7710575E7CA76601B9C14F2E82 /* Development Pods */ = {
+		F9C214D772D64B0E4B25E552AC1D1D15 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				32CB22295B9B1C1ACA2DF73138424CA4 /* Sorcery */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		F3497394420A180BEF2BDA5D3A04D60C /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				F59EE3D9400C140CB57DFC3155DAF67C /* LICENSE */,
-				7C7F130F944C2045649919CD6A2033A7 /* README.md */,
-				78F0A9FF1CB7747ED408F31988901B3A /* Sorcery.podspec */,
+				6399F088616653304E6F4B199DBC7AD8 /* DataSorcery.podspec */,
+				28A4ECFD31B721BAF6D816EEC445AF6C /* LICENSE */,
+				B6F682E3E554056CB30E77C4E9B451BF /* README.md */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -182,56 +182,56 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9702BA08DC1FE16D5215A215ADD6C08E /* Headers */ = {
+		423ABD0CAAD817987C82FBD6249B115C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31B459508511077F5CBFCA410210DA53 /* Sorcery-umbrella.h in Headers */,
+				BE80F93E0F18443FF7899A88ECEACB9E /* Pods-Sorcery_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F82E85EF6B953B7A92E10A39855CBFBD /* Headers */ = {
+		89D174273092581142AEBF92DC31CF8A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D78CA5EFB18035C9663C295EB4714C8D /* Pods-Sorcery_Example-umbrella.h in Headers */,
+				568A779EA60DF93A87B7A32281493635 /* DataSorcery-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		57AB2D2F55BCE0999172C2D64D7AA748 /* Sorcery */ = {
+		3E41CEE720431AC845C761F85A2C5501 /* DataSorcery */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7638B74C4C2E44B534ADBAFEE125E826 /* Build configuration list for PBXNativeTarget "Sorcery" */;
+			buildConfigurationList = 2260B585796DD02EB158B222F0EAF7E1 /* Build configuration list for PBXNativeTarget "DataSorcery" */;
 			buildPhases = (
-				9702BA08DC1FE16D5215A215ADD6C08E /* Headers */,
-				B562BDB20D94BEDBD9A4AA0CC226FA37 /* Sources */,
-				4814C932CDE643973160308FAA62B244 /* Frameworks */,
-				8BBD3F583A966D4F1A334EF85475D390 /* Resources */,
+				89D174273092581142AEBF92DC31CF8A /* Headers */,
+				F8D107B5CDCF64102C934D03A77F52BB /* Sources */,
+				56C14E24CF19552435F18FA104138B12 /* Frameworks */,
+				C6C797E4AFF9391CAD44F0FAA07FAE4B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Sorcery;
-			productName = Sorcery;
-			productReference = F7A9228127FB06B31387D19C4FA3F0BB /* Sorcery.framework */;
+			name = DataSorcery;
+			productName = DataSorcery;
+			productReference = 368736605C4BB67AB3EBA029305A8758 /* DataSorcery.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F1680449E2C1424800B4B7E921CB9BB5 /* Pods-Sorcery_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1E429CFDF6401C4FA39035BB00B2BCB2 /* Build configuration list for PBXNativeTarget "Pods-Sorcery_Example" */;
+			buildConfigurationList = CFCEB4A1E958467195C830326414A060 /* Build configuration list for PBXNativeTarget "Pods-Sorcery_Example" */;
 			buildPhases = (
-				F82E85EF6B953B7A92E10A39855CBFBD /* Headers */,
-				0986B798D7EC865E4A68BAC0C5D58CD0 /* Sources */,
-				73A272389D7398E5D080328800FF6AFB /* Frameworks */,
-				A93FCEA6CC14D96EB9C404EFAE4E0DC9 /* Resources */,
+				423ABD0CAAD817987C82FBD6249B115C /* Headers */,
+				3249B9A5C98DFCEE9A0DBFA134884838 /* Sources */,
+				F9D78BB43FCBF6A09EDF9922A1CE654C /* Frameworks */,
+				150503E630230670C0C74EE25B773616 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BDAE996449A6F34ADBAB6BB653B2BE29 /* PBXTargetDependency */,
+				B5ACF03568720C78BF844F13DB6FAFEE /* PBXTargetDependency */,
 			);
 			name = "Pods-Sorcery_Example";
 			productName = "Pods-Sorcery_Example";
@@ -255,25 +255,25 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = BA875A08C2B75E5363E843AA7BA06BC4 /* Products */;
+			productRefGroup = DD9CEB2635713C1AC7CCDBDE73E84476 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				3E41CEE720431AC845C761F85A2C5501 /* DataSorcery */,
 				F1680449E2C1424800B4B7E921CB9BB5 /* Pods-Sorcery_Example */,
-				57AB2D2F55BCE0999172C2D64D7AA748 /* Sorcery */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8BBD3F583A966D4F1A334EF85475D390 /* Resources */ = {
+		150503E630230670C0C74EE25B773616 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A93FCEA6CC14D96EB9C404EFAE4E0DC9 /* Resources */ = {
+		C6C797E4AFF9391CAD44F0FAA07FAE4B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,39 +283,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0986B798D7EC865E4A68BAC0C5D58CD0 /* Sources */ = {
+		3249B9A5C98DFCEE9A0DBFA134884838 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC921DA6F59E73C5879E54AA8F697721 /* Pods-Sorcery_Example-dummy.m in Sources */,
+				395C87634FD3B963F48A1EC1B1B44F41 /* Pods-Sorcery_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B562BDB20D94BEDBD9A4AA0CC226FA37 /* Sources */ = {
+		F8D107B5CDCF64102C934D03A77F52BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBA9911955BBA98653006E044E97764C /* DataSource.swift in Sources */,
-				C7BAB674192FE0C546682DD178C080AC /* Sorcery-dummy.m in Sources */,
-				BB5E3EA3D13A92B3AE0E4FE55B511703 /* ViewControllers.swift in Sources */,
+				08E6A5A63C19E33E66DC0877C3A022D8 /* DataSorcery-dummy.m in Sources */,
+				40AC65536C4DB307C89FC6D56AC9C15F /* DataSource.swift in Sources */,
+				E5D0F916C407CAFC8534F6EB95A65406 /* ViewControllers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BDAE996449A6F34ADBAB6BB653B2BE29 /* PBXTargetDependency */ = {
+		B5ACF03568720C78BF844F13DB6FAFEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Sorcery;
-			target = 57AB2D2F55BCE0999172C2D64D7AA748 /* Sorcery */;
-			targetProxy = D26D54E941F5A580D10A300F2648A381 /* PBXContainerItemProxy */;
+			name = DataSorcery;
+			target = 3E41CEE720431AC845C761F85A2C5501 /* DataSorcery */;
+			targetProxy = A8840828D96B3E429203BF07DF49E21B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		6EDF1CA329EF3290719D89ED85B0CFFE /* Debug */ = {
+		1300743EE7331A2E8D70469F693F76B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BB84CC35BB828116885FB3AF42A12D0 /* Sorcery.xcconfig */;
+			baseConfigurationReference = FBC922B8552534E736108599DA9F3B52 /* DataSorcery.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -326,14 +326,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Sorcery/Sorcery-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Sorcery/Sorcery-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/DataSorcery/DataSorcery-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DataSorcery/DataSorcery-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Sorcery/Sorcery.modulemap";
-				PRODUCT_MODULE_NAME = Sorcery;
-				PRODUCT_NAME = Sorcery;
+				MODULEMAP_FILE = "Target Support Files/DataSorcery/DataSorcery.modulemap";
+				PRODUCT_MODULE_NAME = DataSorcery;
+				PRODUCT_NAME = DataSorcery;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -344,7 +344,7 @@
 			};
 			name = Debug;
 		};
-		8D5C4ADD97B755AED7BDD171B480AFF5 /* Release */ = {
+		2AAADA3A00230A3F7EB29B66A6737910 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E11CEF9150568A831A12BF973C88AE9 /* Pods-Sorcery_Example.release.xcconfig */;
 			buildSettings = {
@@ -378,7 +378,7 @@
 			};
 			name = Release;
 		};
-		8DE0E44B1E983BE0D49F191F5AFA86E5 /* Debug */ = {
+		95F1B2E261C953E6813690E5DCCFC311 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A7BAB1DC71D1EF0135679EB38B3A9AA /* Pods-Sorcery_Example.debug.xcconfig */;
 			buildSettings = {
@@ -410,38 +410,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		ACB507F8C7CA1C53D3CE5DFD18CEE8CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BB84CC35BB828116885FB3AF42A12D0 /* Sorcery.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Sorcery/Sorcery-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Sorcery/Sorcery-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Sorcery/Sorcery.modulemap";
-				PRODUCT_MODULE_NAME = Sorcery;
-				PRODUCT_NAME = Sorcery;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		B0087CB4594321EF41619F3181FE120E /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -496,8 +464,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -567,14 +534,46 @@
 			};
 			name = Debug;
 		};
+		E23EA5424F39608CF94A9385DD9CF149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBC922B8552534E736108599DA9F3B52 /* DataSorcery.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/DataSorcery/DataSorcery-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DataSorcery/DataSorcery-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DataSorcery/DataSorcery.modulemap";
+				PRODUCT_MODULE_NAME = DataSorcery;
+				PRODUCT_NAME = DataSorcery;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E429CFDF6401C4FA39035BB00B2BCB2 /* Build configuration list for PBXNativeTarget "Pods-Sorcery_Example" */ = {
+		2260B585796DD02EB158B222F0EAF7E1 /* Build configuration list for PBXNativeTarget "DataSorcery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8DE0E44B1E983BE0D49F191F5AFA86E5 /* Debug */,
-				8D5C4ADD97B755AED7BDD171B480AFF5 /* Release */,
+				1300743EE7331A2E8D70469F693F76B6 /* Debug */,
+				E23EA5424F39608CF94A9385DD9CF149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -588,11 +587,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7638B74C4C2E44B534ADBAFEE125E826 /* Build configuration list for PBXNativeTarget "Sorcery" */ = {
+		CFCEB4A1E958467195C830326414A060 /* Build configuration list for PBXNativeTarget "Pods-Sorcery_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6EDF1CA329EF3290719D89ED85B0CFFE /* Debug */,
-				ACB507F8C7CA1C53D3CE5DFD18CEE8CF /* Release */,
+				95F1B2E261C953E6813690E5DCCFC311 /* Debug */,
+				2AAADA3A00230A3F7EB29B66A6737910 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

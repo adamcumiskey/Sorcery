@@ -29,7 +29,7 @@
 //
 
 import UIKit
-import Sorcery
+import DataSorcery
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

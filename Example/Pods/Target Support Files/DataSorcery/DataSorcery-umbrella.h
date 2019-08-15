@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double SorceryVersionNumber;
-FOUNDATION_EXPORT const unsigned char SorceryVersionString[];
+FOUNDATION_EXPORT double DataSorceryVersionNumber;
+FOUNDATION_EXPORT const unsigned char DataSorceryVersionString[];
 

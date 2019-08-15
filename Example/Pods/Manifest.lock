@@ -1,16 +1,16 @@
 PODS:
-  - Sorcery (0.6.4)
+  - DataSorcery (0.6.7)
 
 DEPENDENCIES:
-  - Sorcery (from `../`)
+  - DataSorcery (from `../`)
 
 EXTERNAL SOURCES:
-  Sorcery:
+  DataSorcery:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Sorcery: 8e26036f778d1ba9e1b515e9a9413ef5676fd7e3
+  DataSorcery: 18043ac18d78709de0f4519e7a59fb3e0238ed5c
 
-PODFILE CHECKSUM: dcadcd00c25a8a29f2947a426117ae690c2302d2
+PODFILE CHECKSUM: a7648f1e1f700bd29e1460a7822870ad1ad40ba4
 
 COCOAPODS: 1.7.5

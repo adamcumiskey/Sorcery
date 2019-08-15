@@ -1,5 +1,5 @@
 use_frameworks!
 
 target 'Sorcery_Example' do
-  pod 'Sorcery', :path => '../'
+  pod 'DataSorcery', :path => '../'
 end

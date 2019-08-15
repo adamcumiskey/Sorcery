@@ -1,6 +1,0 @@
-framework module Sorcery {
-  umbrella header "Sorcery-umbrella.h"
-
-  export *
-  module * { export * }
-}

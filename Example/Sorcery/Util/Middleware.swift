@@ -6,7 +6,7 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-import Sorcery
+import DataSorcery
 
 let noCellSelectionStyle: AnyMiddleware = { cell, _, _ in
     guard let cell = cell as? UITableViewCell else { return }

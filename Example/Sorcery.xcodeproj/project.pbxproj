@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		177DD6472305DC0000A70D2F /* DataSorcery.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 661416CA20F2964F003A271D /* DataSorcery.podspec */; };
 		661416B520F295CB003A271D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6614169E20F295CB003A271D /* AppDelegate.swift */; };
 		661416B620F295CB003A271D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6614169F20F295CB003A271D /* Array.swift */; };
 		661416B720F295CB003A271D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 661416A020F295CB003A271D /* LaunchScreen.xib */; };
@@ -26,7 +27,6 @@
 		661416C720F295CB003A271D /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B220F295CB003A271D /* Middleware.swift */; };
 		661416C820F295CB003A271D /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B320F295CB003A271D /* MiddlewareViewController.swift */; };
 		661416C920F295CB003A271D /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661416B420F295CB003A271D /* SubtitleTableViewCell.swift */; };
-		661416CB20F2964F003A271D /* Sorcery.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 661416CA20F2964F003A271D /* Sorcery.podspec */; };
 		D67D829262BB15114F02DE72 /* Pods_Sorcery_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459AE6629C3C997CCFD80D14 /* Pods_Sorcery_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,7 @@
 		661416B220F295CB003A271D /* Middleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		661416B320F295CB003A271D /* MiddlewareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		661416B420F295CB003A271D /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
-		661416CA20F2964F003A271D /* Sorcery.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sorcery.podspec; path = ../Sorcery.podspec; sourceTree = "<group>"; };
+		661416CA20F2964F003A271D /* DataSorcery.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DataSorcery.podspec; path = ../DataSorcery.podspec; sourceTree = "<group>"; };
 		845312344886411B746B011C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9C65F17F9CA29D25BFA369B9 /* Pods-Sorcery_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sorcery_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sorcery_Example/Pods-Sorcery_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BF9C8F3C43CC342446B37DF0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				661416CA20F2964F003A271D /* Sorcery.podspec */,
+				661416CA20F2964F003A271D /* DataSorcery.podspec */,
 				BF9C8F3C43CC342446B37DF0 /* README.md */,
 				845312344886411B746B011C /* LICENSE */,
 			);
@@ -185,8 +185,8 @@
 				0DF7D8F1F55A356664D11A89 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
-				607FACCE1AFB9204008FA782 /* Resources */,
 				96FE2C6C73BACA4585439C97 /* [CP] Embed Pods Frameworks */,
+				607FACCE1AFB9204008FA782 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -238,9 +238,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177DD6472305DC0000A70D2F /* DataSorcery.podspec in Resources */,
 				661416C320F295CB003A271D /* InformationCollectionReusableView.xib in Resources */,
 				661416C520F295CB003A271D /* InformationHeaderFooterView.xib in Resources */,
-				661416CB20F2964F003A271D /* Sorcery.podspec in Resources */,
 				661416C020F295CB003A271D /* Images.xcassets in Resources */,
 				661416BA20F295CB003A271D /* BedazzledTableViewCell.xib in Resources */,
 				661416BF20F295CB003A271D /* ImageCollectionViewCell.xib in Resources */,
@@ -276,11 +276,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sorcery_Example/Pods-Sorcery_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Sorcery/Sorcery.framework",
+				"${BUILT_PRODUCTS_DIR}/DataSorcery/DataSorcery.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sorcery.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DataSorcery.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -434,6 +434,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X8C69U22LW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DataSorcery\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DataSorcery/DataSorcery.framework/Headers\"",
+				);
 				INFOPLIST_FILE = Sorcery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -451,6 +459,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X8C69U22LW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DataSorcery\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DataSorcery/DataSorcery.framework/Headers\"",
+				);
 				INFOPLIST_FILE = Sorcery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;

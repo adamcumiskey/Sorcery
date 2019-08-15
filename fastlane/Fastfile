@@ -19,7 +19,7 @@ desc "Tag a new version and push to cocoapods"
 lane :release_version do |options|
   bump_type = options[:bump_type] || "patch"
   version = version_bump_podspec(bump_type: bump_type)
-  git_commit(path: "./Sorcery.podspec", message: version)
+  git_commit(path: "./DataSorcery.podspec", message: version)
   add_git_tag(tag: version)
   push_to_git_remote(tags: true)
   pod_push

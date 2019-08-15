@@ -1,0 +1,6 @@
+framework module DataSorcery {
+  umbrella header "DataSorcery-umbrella.h"
+
+  export *
+  module * { export * }
+}
