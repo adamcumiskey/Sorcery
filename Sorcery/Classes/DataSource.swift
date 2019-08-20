@@ -128,6 +128,7 @@ open class DataSource: NSObject {
     }
 
     public subscript(safe sectionIndex: Int) -> Section? {
+        guard sectionIndex < sections.count else { return nil }
         return sections[sectionIndex]
     }
 
