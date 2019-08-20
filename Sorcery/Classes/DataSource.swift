@@ -127,8 +127,17 @@ open class DataSource: NSObject {
         return sections[sectionIndex]
     }
 
+    public subscript(safe sectionIndex: Int) -> Section? {
+        return sections[sectionIndex]
+    }
+
     /// Reference item with `DataSource[indexPath]`
     public subscript(indexPath: IndexPath) -> Item {
+        return sections[indexPath.section].items[indexPath.item]
+    }
+
+    public subscript(safe indexPath: IndexPath) -> Item? {
+        guard indexPath.section < sections.count, indexPath.item < sections[indexPath.section].items.count else { return nil }
         return sections[indexPath.section].items[indexPath.item]
     }
 }
@@ -438,6 +447,11 @@ extension DataSource: UITableViewDelegate {
         self[indexPath].willDisplay?(cell, .indexPath(indexPath), self)
     }
 
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        didEndDisplayingMiddleware.forEach { $0(cell, .indexPath(indexPath), self) }
+        self[safe: indexPath]?.didEndDisplaying?(cell, .indexPath(indexPath), self)
+    }
+
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let onSelect = self[indexPath].onSelect {
             onSelect(indexPath)
@@ -488,12 +502,12 @@ extension DataSource: UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
         didEndDisplayingMiddleware.forEach { $0(view, .section(section), self) }
-        self[section].header?.didEndDisplaying?(view, .section(section), self)
+        self[safe: section]?.header?.didEndDisplaying?(view, .section(section), self)
     }
 
     public func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
         didEndDisplayingMiddleware.forEach { $0(view, .section(section), self) }
-        self[section].header?.didEndDisplaying?(view, .section(section), self)
+        self[safe: section]?.header?.didEndDisplaying?(view, .section(section), self)
     }
 
     public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -590,7 +604,7 @@ extension DataSource: UICollectionViewDelegate {
 
     public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         didEndDisplayingMiddleware.forEach { $0(cell, .indexPath(indexPath), self) }
-        self[indexPath].didEndDisplaying?(cell, .indexPath(indexPath), self)
+        self[safe: indexPath]?.didEndDisplaying?(cell, .indexPath(indexPath), self)
     }
 
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -612,7 +626,7 @@ extension DataSource: UICollectionViewDelegate {
 
     public func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
         didEndDisplayingMiddleware.forEach { $0(view, .indexPath(indexPath), self) }
-        self[indexPath].didEndDisplaying?(view, .indexPath(indexPath), self)
+        self[safe: indexPath]?.didEndDisplaying?(view, .indexPath(indexPath), self)
     }
 }
 
