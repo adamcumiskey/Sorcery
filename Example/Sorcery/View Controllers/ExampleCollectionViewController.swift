@@ -37,7 +37,7 @@ class ExampleCollectionViewController: BlockCollectionViewController {
         self.dataSource = DataSource(
             sections: [
                 Section(
-                    header: Reusable { (view: InformationCollectionReusableView) in
+                    header: SectionDecoration { (view: InformationCollectionReusableView) in
                         view.textLabel?.text = "Press and hold on a cell for a few moments, then drag and drop to reorder."
                     },
                     items: items.map { item in

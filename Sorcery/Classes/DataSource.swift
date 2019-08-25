@@ -65,15 +65,13 @@ open class DataSource: NSObject {
     /// Middleware applied to all reusables after the go off-screen. Called before the Reusable's middleware.
     public var didEndDisplayingMiddleware: [AnyMiddleware]
 
-    /**
-     Initialize a `DataSource`
-
-     - parameters:
-     - sections: The array of sections in this `DataSource`
-     - onReorder: Optional callback for when items are moved. You should update the order your underlying data in this callback. If this property is `nil`, reordering will be disabled for this TableView
-     - onScroll: Optional callback for recieving scroll events from `UIScrollViewDelegate`
-     - middleware: The `Middleware` for this `DataSource` to apply
-     */
+    /// Initialize a `DataSource`
+    ///
+    /// - Parameters:
+    ///     - sections: The array of sections in this `DataSource`
+    ///     - onReorder: Optional callback for when items are moved. You should update the order your underlying data in this callback. If this property is `nil`, reordering will be disabled for this TableView
+    ///     - onScroll: Optional callback for recieving scroll events from `UIScrollViewDelegate`
+    ///     - middleware: The `Middleware` for this `DataSource` to apply
     public init(
         sections: [Section],
         onReorder: ReorderBlock? = nil,
@@ -182,81 +180,64 @@ public struct Scroll {
 /// Represents the data for configuring a reusable view
 /// You must specify the View class that a `Reusable` will represent in the `configure` closure.
 /// View must be a subtype of `UITableViewCell`, `UITableViewHeaderFooterView`, `UICollectionViewCell`, `UICollectionReusableView`
-public class Reusable {
+public protocol Reusable {
     /// Store the generic view's type.
-    public let viewClass: UIView.Type
+    var viewClass: UIView.Type { get }
     /// A block which takes a `UIView` and configures it
-    public let configure: ConfigureBlock
+    var configure: ConfigureBlock { get }
     /// A block called before the Reusable appears on-screen
-    public let willDisplay: AnyMiddleware?
+    var willDisplay: AnyMiddleware? { get }
     /// A block called after the Reusable goes off-screen
-    public let didEndDisplaying: AnyMiddleware?
+    var didEndDisplaying: AnyMiddleware? { get }
+    /// The identifier used to diff this reusable
+    var identifier: String { get }
     /// The reuse identifier to use when recycling the view element
-    public var reuseIdentifier: String {
-        if let customReuseIdentifier = customReuseIdentifier {
-            return customReuseIdentifier
-        } else {
-            return String(describing: viewClass)
-        }
-    }
-
-    private let customReuseIdentifier: String?
-
-    /** Create a new reusable
-     
-     - parameters:
-     - reuseIdentifier: Custom reuseIdentifier to use for this `Reusable`. Default is the view's classname.
-     - willDisplay: Middleware called before the reusable appears on-screen
-     - didEndDisplaying: Middleware called after this resuable disappears from the screen
-     - configure: The block used to configure this reusable
-     */
-    public init<View: UIView>(
-        reuseIdentifier: String? = nil,
-        willDisplay: Middleware<View>? = nil,
-        didEndDisplaying: Middleware<View>? = nil,
-        configure: @escaping (View) -> Void
-    ) {
-        self.configure = { view in
-            configure(view as! View)
-        }
-        self.willDisplay = { view, indexPath, dataSource in
-            willDisplay?(view as! View, indexPath, dataSource)
-        }
-        self.didEndDisplaying = { view, indexPath, dataSource in
-            guard let view = view as? View else { return }
-            didEndDisplaying?(view, indexPath, dataSource)
-        }
-        self.viewClass = View.self
-        self.customReuseIdentifier = reuseIdentifier
-    }
+    var reuseIdentifier: String { get }
 }
 
 // MARK: - Item
 
 /// Object used to configure a UITableViewCell or UICollectionViewCell
-public class Item: Reusable {
+public struct Item: Reusable {
+    /// The identifier used to diff this reusable
+    public let identifier: String
+    /// The reuse identifier used to register the cell class to the table/collection view
+    public let reuseIdentifier: String
+    /// The type of the cell
+    public let viewClass: UIView.Type
+    /// The block used to configure the cell
+    public let configure: ConfigureBlock
+    /// Middleware called before the reusable appears on-screen
+    public let willDisplay: AnyMiddleware?
+    /// Middleware called after this resuable disappears from the screen
+    public let didEndDisplaying: AnyMiddleware?
+    /// The closure to execute when the item is tapped
     public let onSelect: IndexPathBlock?
+    /// The closure to execute when the item is deleted
     public let onDelete: IndexPathBlock?
+    /// The swipe actions on the leading edge of the cell. (iOS 11.0+)
     public let leadingActions: [SwipeAction]?
+    /// The swipe actions on the trailing edge of the cell. (iOS 11.0+)
     public let trailingActions: [SwipeAction]?
+    /// Determines if the first action will be called when a full swipe gesture occurs on the cell. (iOS 11.0+)
     public let performsFirstActionWithFullSwipe: Bool
+    /// Allows this cell to be reordered when editing when true
     public let reorderable: Bool
 
-    /**
-     Initialize an item
-
-     - parameters:
-     - configure: The configuration block.
-     - onSelect: The closure to execute when the item is tapped
-     - onDelete: The closure to execute when the item is deleted
-     - willDisplay: Middleware called before the reusable appears on-screen
-     - didEndDisplaying: Middleware called after this resuable disappears from the screen
-     - leadingActions: The swipe actions on the leading edge of the cell. (iOS 11.0+)
-     - trailingActions: The swipe actions on the trailing edge of the cell. (iOS 11.0+)
-     - performsFirstActionWithFullSwipe: Determines if the first action will be called when a full swipe gesture occurs on the cell.
-     - reuseIdentifier: Custom reuseIdentifier to use for this Item
-     - reorderable: Allows this cell to be reordered when editing when true
-     */
+    /// Initialize an item
+    ///
+    /// - Parameters:
+    ///    - configure: The configuration block.
+    ///    - onSelect: The closure to execute when the item is tapped
+    ///    - onDelete: The closure to execute when the item is deleted
+    ///    - willDisplay: Middleware called before the reusable appears on-screen
+    ///    - didEndDisplaying: Middleware called after this resuable disappears from the screen
+    ///    - leadingActions: The swipe actions on the leading edge of the cell. (iOS 11.0+)
+    ///    - trailingActions: The swipe actions on the trailing edge of the cell. (iOS 11.0+)
+    ///    - performsFirstActionWithFullSwipe: Determines if the first action will be called when a full swipe gesture occurs on the cell. (iOS 11.0+)
+    ///    - identifier: The identifier used to diff this reusable
+    ///    - reuseIdentifier: Custom reuseIdentifier to use for this Item
+    ///    - reorderable: Allows this cell to be reordered when editing when true
     public init<View: UIView>(
         configure: @escaping (View) -> Void,
         onSelect: IndexPathBlock? = nil,
@@ -266,7 +247,8 @@ public class Item: Reusable {
         leadingActions: [SwipeAction]? = nil,
         trailingActions: [SwipeAction]? = nil,
         performsFirstActionWithFullSwipe: Bool = true,
-        reuseIdentifier: String? = nil,
+        identifier: String = UUID().uuidString,
+        reuseIdentifier: String = String(describing: View.self),
         reorderable: Bool = false
     ) {
         self.onSelect = onSelect
@@ -275,21 +257,78 @@ public class Item: Reusable {
         self.trailingActions = trailingActions
         self.performsFirstActionWithFullSwipe = performsFirstActionWithFullSwipe
         self.reorderable = reorderable
-        super.init(
-            reuseIdentifier: reuseIdentifier,
-            willDisplay: willDisplay,
-            didEndDisplaying: didEndDisplaying,
-            configure: configure
-        )
+        self.identifier = identifier
+        self.configure = { view in
+            configure(view as! View)
+        }
+        self.willDisplay = { view, indexPath, dataSource in
+            willDisplay?(view as! View, indexPath, dataSource)
+        }
+        self.didEndDisplaying = { view, indexPath, dataSource in
+            didEndDisplaying?(view as! View, indexPath, dataSource)
+        }
+        self.viewClass = View.self
+        self.reuseIdentifier = reuseIdentifier
     }
 
     /// Convenience initializer for trailing closure initialization
-    public convenience init<View: UIView>(
-        reuseIdentifier: String? = nil,
+    public init<View: UIView>(
+        identifier: String = UUID().uuidString,
+        reuseIdentifier: String = String(describing: View.self),
         reorderable: Bool = false,
         configure: @escaping (View) -> Void
     ) {
         self.init(configure: configure, reuseIdentifier: reuseIdentifier, reorderable: reorderable)
+    }
+}
+
+extension Item: Hashable {
+    public static func == (lhs: Item, rhs: Item) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+}
+
+// MARK: - SectionDecoration
+
+public struct SectionDecoration: Reusable {
+    public var viewClass: UIView.Type
+    public var configure: ConfigureBlock
+    public var willDisplay: AnyMiddleware?
+    public var didEndDisplaying: AnyMiddleware?
+    public var identifier: String
+    public var reuseIdentifier: String
+
+    public init<View: UIView>(
+        configure: @escaping (View) -> Void,
+        willDisplay: AnyMiddleware? = nil,
+        didEndDisplaying: AnyMiddleware? = nil,
+        identifier: String = UUID().uuidString,
+        reuseIdentifier: String = String(describing: View.self)
+    ) {
+        self.viewClass = View.self
+        self.identifier = identifier
+        self.reuseIdentifier = reuseIdentifier
+        self.configure = { view in
+            configure(view as! View)
+        }
+        self.willDisplay = { view, indexPath, dataSource in
+            willDisplay?(view as! View, indexPath, dataSource)
+        }
+        self.didEndDisplaying = { view, indexPath, dataSource in
+            didEndDisplaying?(view as! View, indexPath, dataSource)
+        }
+    }
+
+    public init<View: UIView>(
+        identifier: String = UUID().uuidString,
+        reuseIdentifier: String = String(describing: View.self),
+        configure: @escaping (View) -> Void
+    ) {
+        self.init(configure: configure, identifier: identifier, reuseIdentifier: reuseIdentifier)
     }
 }
 
@@ -346,12 +385,15 @@ public class SwipeAction {
 
 /// Data structure that wraps an array of items to represent a tableView/collectionView section.
 public struct Section {
-    /// A Reusable for this section's header
-    public var header: Reusable?
+    /// The identifier for this section
+    public let identifier: String
+
+    /// A SectionDecoration for this section's header
+    public var header: SectionDecoration?
     /// The item data for this section
     public var items: [Item]
-    /// A Reusable for this section's footer
-    public var footer: Reusable?
+    /// A SectionDecoration for this section's footer
+    public var footer: SectionDecoration?
 
     /// Header text for UITableView section
     public var headerText: String?
@@ -361,12 +403,14 @@ public struct Section {
     /**
      */
     public init(
-        header: Reusable? = nil,
+        identifier: String? = nil,
+        header: SectionDecoration? = nil,
         headerText: String? = nil,
         items: [Item],
-        footer: Reusable? = nil,
+        footer: SectionDecoration? = nil,
         footerText: String? = nil
     ) {
+        self.identifier = identifier ?? UUID().uuidString
         self.header = header
         self.headerText = headerText
         self.items = items
@@ -377,6 +421,16 @@ public struct Section {
     // Reference items with `section[index]`
     public subscript(index: Int) -> Item {
         return items[index]
+    }
+}
+
+extension Section: Hashable {
+    public static func == (lhs: Section, rhs: Section) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
     }
 }
 

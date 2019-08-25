@@ -24,7 +24,7 @@ class EditingViewController: BlockTableViewController {
         self.dataSource = DataSource(
             sections: [
                 Section(
-                    header: Reusable { (view: InformationHeaderFooterView) in
+                    header: SectionDecoration { (view: InformationHeaderFooterView) in
                         view.titleLabel.text = "Tap \"Edit\" to enabled deletion and reordering. Tap \"Done\" to end editing."
                     },
                     items: items.map { item in
