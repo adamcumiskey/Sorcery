@@ -223,7 +223,8 @@ public class Reusable {
             willDisplay?(view as! View, indexPath, dataSource)
         }
         self.didEndDisplaying = { view, indexPath, dataSource in
-            didEndDisplaying?(view as! View, indexPath, dataSource)
+            guard let view = view as? View else { return }
+            didEndDisplaying?(view, indexPath, dataSource)
         }
         self.viewClass = View.self
         self.customReuseIdentifier = reuseIdentifier
