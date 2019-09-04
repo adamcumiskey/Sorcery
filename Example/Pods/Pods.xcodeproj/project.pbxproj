@@ -12,6 +12,7 @@
 		40AC65536C4DB307C89FC6D56AC9C15F /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA32886EEDC665A4BA527CB21BD26A8 /* DataSource.swift */; };
 		4D4C5CE373A205696CD4AE0DBF15AF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		568A779EA60DF93A87B7A32281493635 /* DataSorcery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7881B084F23C9B583D914BC7021A50B0 /* DataSorcery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66F4B5162313374F00549556 /* Diffable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4B5152313374F00549556 /* Diffable.swift */; };
 		BE80F93E0F18443FF7899A88ECEACB9E /* Pods-Sorcery_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA902FC3F96561403C361DBCBDB72173 /* Pods-Sorcery_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E5D0F916C407CAFC8534F6EB95A65406 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2104C54C0C2AFFDDD7C3C867D54AB4CD /* ViewControllers.swift */; };
 		FD46182B63508B372116450ED99F0EA0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
@@ -39,6 +40,7 @@
 		534A4A870D628F0AE3ED74D4388597AA /* Pods-Sorcery_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sorcery_Example-frameworks.sh"; sourceTree = "<group>"; };
 		6399F088616653304E6F4B199DBC7AD8 /* DataSorcery.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = DataSorcery.podspec; sourceTree = "<group>"; tabWidth = 2; };
 		665899C66CFF12AE4BFEEDA105BFADB7 /* Pods_Sorcery_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sorcery_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F4B5152313374F00549556 /* Diffable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diffable.swift; sourceTree = "<group>"; };
 		7881B084F23C9B583D914BC7021A50B0 /* DataSorcery-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DataSorcery-umbrella.h"; sourceTree = "<group>"; };
 		7C2118FBC97D6BCAEFB93FE5C50632B1 /* Pods-Sorcery_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Sorcery_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		831CEE6839473042BFB6BACADA32A3A9 /* Pods-Sorcery_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sorcery_Example-Info.plist"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		265EDA3C49BB9B4F27EF56120ED92A41 /* DataSorcery */ = {
 			isa = PBXGroup;
 			children = (
+				66F4B5152313374F00549556 /* Diffable.swift */,
 				DDA32886EEDC665A4BA527CB21BD26A8 /* DataSource.swift */,
 				2104C54C0C2AFFDDD7C3C867D54AB4CD /* ViewControllers.swift */,
 				F9C214D772D64B0E4B25E552AC1D1D15 /* Pod */,
@@ -297,6 +300,7 @@
 			files = (
 				08E6A5A63C19E33E66DC0877C3A022D8 /* DataSorcery-dummy.m in Sources */,
 				40AC65536C4DB307C89FC6D56AC9C15F /* DataSource.swift in Sources */,
+				66F4B5162313374F00549556 /* Diffable.swift in Sources */,
 				E5D0F916C407CAFC8534F6EB95A65406 /* ViewControllers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

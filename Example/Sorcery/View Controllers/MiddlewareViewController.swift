@@ -18,7 +18,7 @@ class MiddlewareViewController: BlockTableViewController {
         self.dataSource = DataSource(
             sections: [
                 Section(
-                    header: Reusable { (view: InformationHeaderFooterView) in
+                    header: SectionDecoration { (view: InformationHeaderFooterView) in
                         view.titleLabel.text = "Middleware is applied to each cell before it is displayed."
                     },
                     items: (0..<50).map { item in
