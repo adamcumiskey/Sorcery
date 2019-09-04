@@ -9,6 +9,7 @@
 import UIKit
 import DataSorcery
 
+/*
 class DiffableExampleViewController: UITableViewController {
     private var on = true
     private var differ: UITableViewDiffableDataSource<Section, Item>?
@@ -56,3 +57,4 @@ class DiffableExampleViewController: UITableViewController {
         )
     }
 }
+*/

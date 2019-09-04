@@ -35,11 +35,6 @@ class MenuViewController: BlockTableViewController {
                             cell.textLabel?.text = "Middleware"
                         }, onSelect: { [unowned self] _ in
                             self.navigationController?.pushViewController(MiddlewareViewController(), animated: true)
-                        }),
-                        Item(configure: { (cell: UITableViewCell) in
-                            cell.textLabel?.text = "Diffable"
-                        }, onSelect: { [weak self] _ in
-                            self?.navigationController?.pushViewController(DiffableExampleViewController(style: .grouped), animated: true)
                         })
                     ]
                 ),

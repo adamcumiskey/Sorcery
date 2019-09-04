@@ -7,6 +7,7 @@
 
 import UIKit
 
+/*
 @available(iOS 13, *)
 public extension NSDiffableDataSourceSnapshot where SectionIdentifierType == Section, ItemIdentifierType == Item {
     /// Create a new NSDiffableDataSourceSnapshot from a DataSorcery,DataSource
@@ -53,3 +54,4 @@ public extension UICollectionViewDiffableDataSource where SectionIdentifierType 
         )
     }
 }
+*/
