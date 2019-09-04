@@ -12,8 +12,8 @@ Pod::Spec.new do |s|
   s.author           = { 'Adam Cumiskey' => 'adam.cumiskey@gmail.com' }
   s.source           = { :git => 'https://github.com/adamcumiskey/Sorcery.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.3'
   s.swift_version = '4.0'
 
-  s.source_files = 'Sorcery/Classes/**/*'
+  s.source_files = 'DataSorcery/**/*.swift'
 end

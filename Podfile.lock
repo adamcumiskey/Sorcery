@@ -1,0 +1,16 @@
+PODS:
+  - DataSorcery (0.6.12)
+
+DEPENDENCIES:
+  - DataSorcery (from `./`)
+
+EXTERNAL SOURCES:
+  DataSorcery:
+    :path: "./"
+
+SPEC CHECKSUMS:
+  DataSorcery: b34eeb34bee99ac0db97309454c25a8e326d2855
+
+PODFILE CHECKSUM: a857e27ae551e7d15de3c1f7ace809602eb00c72
+
+COCOAPODS: 1.5.3
