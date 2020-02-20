@@ -264,11 +264,10 @@ public struct Item: Reusable {
             willDisplay?(unwrappedView, indexPath, dataSource)
         }
         self.didEndDisplaying = { view, indexPath, dataSource in
-            guard let unwrappedView = view as? View else {
-                assertionFailure("Class mismatch in didEndDisplaying block. Expected \(String(describing: View.self)), Got \(type(of: view))")
-                return
+            // Sometimes the view provided is stale compared to the item backing it in the data source, so we can not reliably assert here.
+            if let view = view as? View {
+                didEndDisplaying?(view, indexPath, dataSource)
             }
-            didEndDisplaying?(unwrappedView, indexPath, dataSource)
         }
         self.viewClass = View.self
         self.reuseIdentifier = reuseIdentifier
@@ -326,11 +325,10 @@ public struct SectionDecoration: Reusable {
             willDisplay?(unwrappedView, indexPath, dataSource)
         }
         self.didEndDisplaying = { view, indexPath, dataSource in
-            guard let unwrappedView = view as? View else {
-                assertionFailure("Class mismatch in didEndDisplaying block. Expected \(String(describing: View.self)), Got \(type(of: view))")
-                return
+            // Sometimes the view provided is stale compared to the item backing it in the data source, so we can not reliably assert here.
+            if let view = view as? View {
+                didEndDisplaying?(view, indexPath, dataSource)
             }
-            didEndDisplaying?(unwrappedView, indexPath, dataSource)
         }
     }
 
