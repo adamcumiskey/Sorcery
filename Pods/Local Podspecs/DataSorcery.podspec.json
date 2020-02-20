@@ -1,6 +1,6 @@
 {
   "name": "DataSorcery",
-  "version": "0.6.12",
+  "version": "0.7.0",
   "summary": "Conjure UITableViews and UICollectionViews out of thin air",
   "description": "Sorcery is an embedded DSL for declaratively constructing UITableViews and UICollectionViews.",
   "homepage": "https://github.com/adamcumiskey/Sorcery",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/adamcumiskey/Sorcery.git",
-    "tag": "0.6.12"
+    "tag": "0.7.0"
   },
   "platforms": {
     "ios": "9.3"

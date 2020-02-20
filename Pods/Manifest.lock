@@ -1,5 +1,5 @@
 PODS:
-  - DataSorcery (0.6.12)
+  - DataSorcery (0.7.0)
 
 DEPENDENCIES:
   - DataSorcery (from `./`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  DataSorcery: d45f9969a6f200fc2a8cedb06378145d9107cb89
+  DataSorcery: 9567c769d4e0e49e5350aa648279d7c07c3cefc3
 
 PODFILE CHECKSUM: a857e27ae551e7d15de3c1f7ace809602eb00c72
 

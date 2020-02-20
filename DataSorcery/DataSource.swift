@@ -73,13 +73,11 @@ open class DataSource: NSObject {
     ///     - onReorder: Optional callback for when items are moved. You should update the order your underlying data in this callback. If this property is `nil`, reordering will be disabled for this TableView
     ///     - onScroll: Optional callback for recieving scroll events from `UIScrollViewDelegate`
     ///     - middleware: The `Middleware` for this `DataSource` to apply
-    public init(
-        sections: [Section],
-        onReorder: ReorderBlock? = nil,
-        scroll: Scroll? = nil,
-        willDisplayMiddleware: [AnyMiddleware] = [],
-        didEndDisplayingMiddleware: [AnyMiddleware] = []
-    ) {
+    public init(sections: [Section],
+                onReorder: ReorderBlock? = nil,
+                scroll: Scroll? = nil,
+                willDisplayMiddleware: [AnyMiddleware] = [],
+                didEndDisplayingMiddleware: [AnyMiddleware] = []) {
         self.sections = sections
         self.onReorder = onReorder
         self.scroll = scroll
@@ -88,13 +86,11 @@ open class DataSource: NSObject {
     }
 
     /// Convenience initializer to construct a DataSource with a single section
-    public convenience init(
-        section: Section,
-        onReorder: ReorderBlock? = nil,
-        scroll: Scroll? = nil,
-        willDisplayMiddleware: [AnyMiddleware] = [],
-        didEndDisplayingMiddleware: [AnyMiddleware] = []
-    ) {
+    public convenience init(section: Section,
+                            onReorder: ReorderBlock? = nil,
+                            scroll: Scroll? = nil,
+                            willDisplayMiddleware: [AnyMiddleware] = [],
+                            didEndDisplayingMiddleware: [AnyMiddleware] = []) {
         self.init(
             sections: [section],
             onReorder: onReorder,
@@ -105,13 +101,11 @@ open class DataSource: NSObject {
     }
 
     /// Convenience initializer to construct a DataSource with an array of items
-    public convenience init(
-        items: [Item],
-        onReorder: ReorderBlock? = nil,
-        scroll: Scroll? = nil,
-        willDisplayMiddleware: [AnyMiddleware] = [],
-        didEndDisplayingMiddleware: [AnyMiddleware] = []
-    ) {
+    public convenience init(items: [Item],
+                            onReorder: ReorderBlock? = nil,
+                            scroll: Scroll? = nil,
+                            willDisplayMiddleware: [AnyMiddleware] = [],
+                            didEndDisplayingMiddleware: [AnyMiddleware] = []) {
         self.init(
             sections: [Section(items: items)],
             onReorder: onReorder,
@@ -161,13 +155,11 @@ public struct Scroll {
     /// Callback for when the scrollView stops scrolling
     public let didEndDecelerating: ScrollBlock?
 
-    public init(
-        onScroll: ScrollBlock? = nil,
-        willBeginDragging: ScrollBlock? = nil,
-        willEndDragging: WillEndDraggingBlock? = nil,
-        didEndDragging: DidEndDraggingBlock? = nil,
-        didEndDecelerating: ScrollBlock? = nil
-    ) {
+    public init(onScroll: ScrollBlock? = nil,
+                willBeginDragging: ScrollBlock? = nil,
+                willEndDragging: WillEndDraggingBlock? = nil,
+                didEndDragging: DidEndDraggingBlock? = nil,
+                didEndDecelerating: ScrollBlock? = nil) {
         self.onScroll = onScroll
         self.willBeginDragging = willBeginDragging
         self.willEndDragging = willEndDragging
@@ -239,19 +231,17 @@ public struct Item: Reusable {
     ///    - identifier: The identifier used to diff this reusable
     ///    - reuseIdentifier: Custom reuseIdentifier to use for this Item
     ///    - reorderable: Allows this cell to be reordered when editing when true
-    public init<View: UIView>(
-        configure: @escaping (View) -> Void,
-        onSelect: IndexPathBlock? = nil,
-        onDelete: IndexPathBlock? = nil,
-        willDisplay: Middleware<View>? = nil,
-        didEndDisplaying: Middleware<View>? = nil,
-        leadingActions: [SwipeAction]? = nil,
-        trailingActions: [SwipeAction]? = nil,
-        performsFirstActionWithFullSwipe: Bool = true,
-        identifier: String = UUID().uuidString,
-        reuseIdentifier: String = String(describing: View.self),
-        reorderable: Bool = false
-    ) {
+    public init<View: UIView>(configure: @escaping (View) -> Void,
+                              onSelect: IndexPathBlock? = nil,
+                              onDelete: IndexPathBlock? = nil,
+                              willDisplay: Middleware<View>? = nil,
+                              didEndDisplaying: Middleware<View>? = nil,
+                              leadingActions: [SwipeAction]? = nil,
+                              trailingActions: [SwipeAction]? = nil,
+                              performsFirstActionWithFullSwipe: Bool = true,
+                              identifier: String = UUID().uuidString,
+                              reuseIdentifier: String = String(describing: View.self),
+                              reorderable: Bool = false) {
         self.onSelect = onSelect
         self.onDelete = onDelete
         self.leadingActions = leadingActions
@@ -260,25 +250,35 @@ public struct Item: Reusable {
         self.reorderable = reorderable
         self.identifier = identifier
         self.configure = { view in
-            configure(view as! View)
+            guard let unwrappedView = view as? View else {
+                assertionFailure("Class mismatch in configure block. Expected \(String(describing: View.self)), Got \(type(of: view))")
+                return
+            }
+            configure(unwrappedView)
         }
         self.willDisplay = { view, indexPath, dataSource in
-            willDisplay?(view as! View, indexPath, dataSource)
+            guard let unwrappedView = view as? View else {
+                assertionFailure("Class mismatch in willDisplay block. Expected \(String(describing: View.self)), Got \(type(of: view))")
+                return
+            }
+            willDisplay?(unwrappedView, indexPath, dataSource)
         }
         self.didEndDisplaying = { view, indexPath, dataSource in
-            didEndDisplaying?(view as! View, indexPath, dataSource)
+            guard let unwrappedView = view as? View else {
+                assertionFailure("Class mismatch in didEndDisplaying block. Expected \(String(describing: View.self)), Got \(type(of: view))")
+                return
+            }
+            didEndDisplaying?(unwrappedView, indexPath, dataSource)
         }
         self.viewClass = View.self
         self.reuseIdentifier = reuseIdentifier
     }
 
     /// Convenience initializer for trailing closure initialization
-    public init<View: UIView>(
-        identifier: String = UUID().uuidString,
-        reuseIdentifier: String = String(describing: View.self),
-        reorderable: Bool = false,
-        configure: @escaping (View) -> Void
-    ) {
+    public init<View: UIView>(identifier: String = UUID().uuidString,
+                              reuseIdentifier: String = String(describing: View.self),
+                              reorderable: Bool = false,
+                              configure: @escaping (View) -> Void) {
         self.init(configure: configure, reuseIdentifier: reuseIdentifier, reorderable: reorderable)
     }
 }
@@ -303,32 +303,40 @@ public struct SectionDecoration: Reusable {
     public var identifier: String
     public var reuseIdentifier: String
 
-    public init<View: UIView>(
-        configure: @escaping (View) -> Void,
-        willDisplay: AnyMiddleware? = nil,
-        didEndDisplaying: AnyMiddleware? = nil,
-        identifier: String = UUID().uuidString,
-        reuseIdentifier: String = String(describing: View.self)
-    ) {
+    public init<View: UIView>(configure: @escaping (View) -> Void,
+                              willDisplay: AnyMiddleware? = nil,
+                              didEndDisplaying: AnyMiddleware? = nil,
+                              identifier: String = UUID().uuidString,
+                              reuseIdentifier: String = String(describing: View.self)) {
         self.viewClass = View.self
         self.identifier = identifier
         self.reuseIdentifier = reuseIdentifier
         self.configure = { view in
-            configure(view as! View)
+            guard let unwrappedView = view as? View else {
+                assertionFailure("Class mismatch in configure block. Expected \(String(describing: View.self)), Got \(type(of: view))")
+                return
+            }
+            configure(unwrappedView)
         }
         self.willDisplay = { view, indexPath, dataSource in
-            willDisplay?(view as! View, indexPath, dataSource)
+            guard let unwrappedView = view as? View else {
+                assertionFailure("Class mismatch in willDisplay block. Expected \(String(describing: View.self)), Got \(type(of: view))")
+                return
+            }
+            willDisplay?(unwrappedView, indexPath, dataSource)
         }
         self.didEndDisplaying = { view, indexPath, dataSource in
-            didEndDisplaying?(view as! View, indexPath, dataSource)
+            guard let unwrappedView = view as? View else {
+                assertionFailure("Class mismatch in didEndDisplaying block. Expected \(String(describing: View.self)), Got \(type(of: view))")
+                return
+            }
+            didEndDisplaying?(unwrappedView, indexPath, dataSource)
         }
     }
 
-    public init<View: UIView>(
-        identifier: String = UUID().uuidString,
-        reuseIdentifier: String = String(describing: View.self),
-        configure: @escaping (View) -> Void
-    ) {
+    public init<View: UIView>(identifier: String = UUID().uuidString,
+                              reuseIdentifier: String = String(describing: View.self),
+                              configure: @escaping (View) -> Void) {
         self.init(configure: configure, identifier: identifier, reuseIdentifier: reuseIdentifier)
     }
 }
@@ -403,14 +411,12 @@ public struct Section {
 
     /**
      */
-    public init(
-        identifier: String? = nil,
-        header: SectionDecoration? = nil,
-        headerText: String? = nil,
-        items: [Item],
-        footer: SectionDecoration? = nil,
-        footerText: String? = nil
-    ) {
+    public init(identifier: String? = nil,
+                header: SectionDecoration? = nil,
+                headerText: String? = nil,
+                items: [Item],
+                footer: SectionDecoration? = nil,
+                footerText: String? = nil) {
         self.identifier = identifier ?? UUID().uuidString
         self.header = header
         self.headerText = headerText
@@ -677,13 +683,19 @@ extension DataSource: UICollectionViewDelegate {
     // MARK: Supplementary View
 
     public func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-        willDisplayMiddleware.forEach { $0(view, .indexPath(indexPath), self) }
-        self[indexPath].willDisplay?(view, .indexPath(indexPath), self)
+      if elementKind == UICollectionElementKindSectionHeader {
+        self[indexPath.section].header?.willDisplay?(view, .section(indexPath.section), self)
+      } else if elementKind == UICollectionElementKindSectionFooter {
+        self[indexPath.section].footer?.willDisplay?(view, .section(indexPath.section), self)
+      }
     }
 
     public func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
-        didEndDisplayingMiddleware.forEach { $0(view, .indexPath(indexPath), self) }
-        self[safe: indexPath]?.didEndDisplaying?(view, .indexPath(indexPath), self)
+      if elementKind == UICollectionElementKindSectionHeader {
+        self[indexPath.section].header?.didEndDisplaying?(view, .section(indexPath.section), self)
+      } else if elementKind == UICollectionElementKindSectionFooter {
+        self[indexPath.section].footer?.didEndDisplaying?(view, .section(indexPath.section), self)
+      }
     }
 }
 
