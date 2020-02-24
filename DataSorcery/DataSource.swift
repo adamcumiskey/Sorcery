@@ -690,9 +690,9 @@ extension DataSource: UICollectionViewDelegate {
 
     public func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
       if elementKind == UICollectionElementKindSectionHeader {
-        self[indexPath.section].header?.didEndDisplaying?(view, .section(indexPath.section), self)
+        self[safe: indexPath.section]?.header?.didEndDisplaying?(view, .section(indexPath.section), self)
       } else if elementKind == UICollectionElementKindSectionFooter {
-        self[indexPath.section].footer?.didEndDisplaying?(view, .section(indexPath.section), self)
+        self[safe: indexPath.section]?.footer?.didEndDisplaying?(view, .section(indexPath.section), self)
       }
     }
 }
